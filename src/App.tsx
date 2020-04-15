@@ -1,21 +1,25 @@
-import React from "react";
-import { Button, Container, ListGroup, ListGroupItem } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
+import { Container, ListGroup } from "react-bootstrap";
 import styles from "./App.module.css";
+import HabitItem from "./HabitItem";
 
 function App() {
+  const [items, setItems] = useState([
+    "Read a book",
+    "Study Spanish",
+    "Stretch 20 mins",
+  ]);
   return (
     <Container className={styles.container}>
       <ListGroup>
-        <ListGroupItem className="d-flex justify-content-between">
-          <span>Read a Book</span>
-          <Button variant="danger" size="sm">
-            <FontAwesomeIcon icon={faTrash} />
-          </Button>
-        </ListGroupItem>
-        <ListGroupItem>Study Spanish</ListGroupItem>
-        <ListGroupItem>Stretch 20 mins</ListGroupItem>
+        {items.map((label) => (
+          <HabitItem
+            label={label}
+            onDelete={() => {
+              setItems(items.filter((item) => item !== label));
+            }}
+          />
+        ))}
       </ListGroup>
     </Container>
   );
