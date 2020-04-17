@@ -12,7 +12,10 @@ function App() {
   ]);
   return (
     <Container className={styles.container}>
-      <NewHabitForm onSubmit={(newItem) => setItems(items.concat([newItem]))} />
+      <NewHabitForm
+        onSubmit={(newItem) => setItems(items.concat([newItem]))}
+        habitItems={items}
+      />
       <ListGroup>
         {items.map((label) => (
           <HabitItem
