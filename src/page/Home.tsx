@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { ListGroup } from "react-bootstrap";
 
-import NewHabitForm from "./NewHabitForm";
-import HabitItem from "./HabitItem";
+import HabitItem from "../habit/HabitItem";
+import NewHabitForm from "../habit/NewHabitForm";
 
 export default function Home() {
   const [items, setItems] = useState([
