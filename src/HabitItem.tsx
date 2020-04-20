@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClipboard,
   faClipboardCheck,
-  faTrash,
+  faEdit,
 } from "@fortawesome/free-solid-svg-icons";
 
 type HabitItemProps = {
@@ -40,8 +40,8 @@ const HabitItem = (props: HabitItemProps) => {
         </Button>
         <span>{label}</span>
       </div>
-      <Button onClick={onDelete} size="sm" variant="danger">
-        <FontAwesomeIcon icon={faTrash} />
+      <Button onClick={onDelete} size="sm" variant="secondary">
+        <FontAwesomeIcon icon={faEdit} />
       </Button>
     </ListGroupItem>
   );
