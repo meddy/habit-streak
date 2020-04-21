@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+
+import { RootState } from "../app/store";
 
 type NewHabitProps = {
   onSubmit: (value: string) => void;
-  habitItems: string[];
 };
 
 export default function NewHabitForm(props: NewHabitProps) {
-  const { onSubmit, habitItems } = props;
+  const dispatch = useDispatch();
+  const { onSubmit } = props;
+  const labels = useSelector((state: RootState) =>
+    state.habits.map((habit) => habit.label)
+  );
   const [value, setValue] = useState("");
   const [validated, setValidated] = useState(false);
 
   const isValid =
-    value.length > 0 && value.length < 100 && !habitItems.includes(value);
+    value.length > 0 && value.length < 100 && !labels.includes(value);
 
   return (
     <Form
