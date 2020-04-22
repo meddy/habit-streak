@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, ListGroupItem } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClipboard,
@@ -7,15 +8,17 @@ import {
   faEdit,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { Habit, toggleHabit } from "./habitSlice";
+
 type HabitItemProps = {
-  isComplete: boolean;
-  label: string;
-  onDelete: () => void;
-  onToggle: () => void;
+  habit: Habit;
 };
 
 const HabitItem = (props: HabitItemProps) => {
-  const { isComplete, label, onDelete, onToggle } = props;
+  const { habit } = props;
+  const { isComplete, label } = habit;
+
+  const dispatch = useDispatch();
   const [isHovering, setHovering] = useState(false);
   const icon = isHovering || isComplete ? faClipboardCheck : faClipboard;
 
@@ -29,7 +32,7 @@ const HabitItem = (props: HabitItemProps) => {
         <Button
           className="mr-2"
           onClick={() => {
-            onToggle();
+            dispatch(toggleHabit(label));
           }}
           onMouseEnter={toggleHover}
           onMouseLeave={toggleHover}
@@ -40,7 +43,7 @@ const HabitItem = (props: HabitItemProps) => {
         </Button>
         <span>{label}</span>
       </div>
-      <Button onClick={onDelete} size="sm" variant="secondary">
+      <Button size="sm" variant="secondary">
         <FontAwesomeIcon icon={faEdit} />
       </Button>
     </ListGroupItem>
