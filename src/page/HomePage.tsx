@@ -6,7 +6,7 @@ import HabitItem from "../habit/HabitItem";
 import NewHabitForm from "../habit/NewHabitForm";
 import { RootState } from "../app/store";
 
-export default function Home() {
+export default function HomePage() {
   const habits = useSelector((state: RootState) => Object.values(state.habits));
 
   return (

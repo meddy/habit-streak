@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, ListGroupItem } from "react-bootstrap";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClipboard,
@@ -19,6 +20,7 @@ const HabitItem = (props: HabitItemProps) => {
   const { isComplete, label } = habit;
 
   const dispatch = useDispatch();
+  const history = useHistory();
   const [isHovering, setHovering] = useState(false);
   const icon = isHovering || isComplete ? faClipboardCheck : faClipboard;
 
@@ -43,7 +45,13 @@ const HabitItem = (props: HabitItemProps) => {
         </Button>
         <span>{label}</span>
       </div>
-      <Button size="sm" variant="secondary">
+      <Button
+        size="sm"
+        variant="secondary"
+        onClick={() => {
+          history.push(`/details/${label}`);
+        }}
+      >
         <FontAwesomeIcon icon={faEdit} />
       </Button>
     </ListGroupItem>

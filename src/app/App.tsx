@@ -2,8 +2,8 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import HabitDetails from "../habit/HabitDetails";
-import Home from "../page/Home";
+import HomePage from "../page/HomePage";
+import DetailsPage from "../page/DetailsPage";
 import styles from "./App.module.css";
 
 export default function App() {
@@ -12,10 +12,10 @@ export default function App() {
       <Container className={styles.container}>
         <Switch>
           <Route path="/" exact>
-            <Home />
+            <HomePage />
           </Route>
           <Route path="/details/:label" exact>
-            <HabitDetails />
+            <DetailsPage />
           </Route>
         </Switch>
       </Container>
