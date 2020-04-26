@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
+import { Breadcrumb } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import { RootState } from "../app/store";
 
@@ -15,5 +17,12 @@ export default function DetailsPage() {
     return <Redirect to="/" />;
   }
 
-  return <h1>{params.label}</h1>;
+  return (
+    <Breadcrumb>
+      <Breadcrumb.Item linkAs="span">
+        <Link to="/">Home</Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item active>{params.label}</Breadcrumb.Item>
+    </Breadcrumb>
+  );
 }
