@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
 
-import { RootState } from "../app/store";
-import { Habit, addHabit } from "./habitSlice";
+type HabitFormProps = {
+  existing: String[];
+  submitLabel: String;
+  onSubmit: (label: string) => void;
+};
 
-export default function NewHabitForm() {
+export default function HabitForm(props: HabitFormProps) {
+  const { existing, submitLabel, onSubmit } = props;
   const [value, setValue] = useState("");
   const [validated, setValidated] = useState(false);
 
-  const dispatch = useDispatch();
-  const labels = useSelector((state: RootState) =>
-    Object.values(state.habits).map((habit: Habit) => habit.label)
-  );
-
   const isValid =
-    value.length > 0 && value.length < 100 && !labels.includes(value);
+    value.length > 0 && value.length < 100 && !existing.includes(value);
 
   return (
     <Form
@@ -27,7 +25,9 @@ export default function NewHabitForm() {
         event.stopPropagation();
 
         if (isValid) {
-          dispatch(addHabit({ label: value, isComplete: false }));
+          onSubmit(value);
+          setValue("");
+          setValidated(false);
         } else {
           setValidated(true);
         }
@@ -43,7 +43,7 @@ export default function NewHabitForm() {
         placeholder="I want to..."
         value={value}
       />
-      <Button type="submit">Add Habit</Button>
+      <Button type="submit">{submitLabel}</Button>
     </Form>
   );
 }
