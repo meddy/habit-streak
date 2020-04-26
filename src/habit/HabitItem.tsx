@@ -17,7 +17,7 @@ type HabitItemProps = {
 
 const HabitItem = (props: HabitItemProps) => {
   const { habit } = props;
-  const { isComplete, label } = habit;
+  const { id, isComplete, label } = habit;
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -34,7 +34,7 @@ const HabitItem = (props: HabitItemProps) => {
         <Button
           className="mr-2"
           onClick={() => {
-            dispatch(toggleHabit(label));
+            dispatch(toggleHabit(id));
           }}
           onMouseEnter={toggleHover}
           onMouseLeave={toggleHover}
@@ -49,7 +49,7 @@ const HabitItem = (props: HabitItemProps) => {
         size="sm"
         variant="secondary"
         onClick={() => {
-          history.push(`/details/${label}`);
+          history.push(`/details/${id}`);
         }}
       >
         <FontAwesomeIcon icon={faEdit} />

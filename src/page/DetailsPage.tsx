@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams, Redirect } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { Breadcrumb } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -15,7 +15,6 @@ interface RouteParams {
 export default function DetailsPage() {
   const dispatch = useDispatch();
   const params = useParams<RouteParams>();
-  const history = useHistory();
   const habit = useSelector((state: RootState) => state.habits[params.label]);
   const existing = useSelector((state: RootState) =>
     Object.values(state.habits)
@@ -39,8 +38,7 @@ export default function DetailsPage() {
         existing={existing}
         submitLabel="Rename"
         onSubmit={(newLabel) => {
-          dispatch(editLabel({ oldLabel: habit.label, newLabel }));
-          history.push(`/details/${newLabel}`);
+          dispatch(editLabel({ id: habit.id, label: newLabel }));
         }}
       />
     </>

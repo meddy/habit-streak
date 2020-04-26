@@ -18,7 +18,7 @@ export default function HomePage() {
         existing={existing}
         submitLabel="Add Habit"
         onSubmit={(label) => {
-          dispatch(addHabit({ label, isComplete: false }));
+          dispatch(addHabit(label));
         }}
       />
       <ListGroup>
