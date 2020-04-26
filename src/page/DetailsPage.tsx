@@ -26,6 +26,7 @@ export default function DetailsPage() {
     return <Redirect to="/" />;
   }
 
+  const { id, label } = habit;
   return (
     <>
       <Breadcrumb>
@@ -35,10 +36,12 @@ export default function DetailsPage() {
         <Breadcrumb.Item active>Habit Details</Breadcrumb.Item>
       </Breadcrumb>
       <HabitForm
+        initialValue={label}
         existing={existing}
         submitLabel="Rename"
         onSubmit={(newLabel) => {
-          dispatch(editLabel({ id: habit.id, label: newLabel }));
+          dispatch(editLabel({ id, label: newLabel }));
+          return newLabel;
         }}
       />
     </>

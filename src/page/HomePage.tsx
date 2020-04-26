@@ -19,6 +19,7 @@ export default function HomePage() {
         submitLabel="Add Habit"
         onSubmit={(label) => {
           dispatch(addHabit(label));
+          return "";
         }}
       />
       <ListGroup>

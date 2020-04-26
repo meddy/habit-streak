@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
 type HabitFormProps = {
-  existing: String[];
-  submitLabel: String;
-  onSubmit: (label: string) => void;
+  initialValue?: string;
+  existing: string[];
+  submitLabel: string;
+  onSubmit: (label: string) => string;
 };
 
 export default function HabitForm(props: HabitFormProps) {
-  const { existing, submitLabel, onSubmit } = props;
-  const [value, setValue] = useState("");
+  const { initialValue = "", existing, submitLabel, onSubmit } = props;
+  const [value, setValue] = useState(initialValue);
   const [validated, setValidated] = useState(false);
 
   const isValid =
@@ -25,8 +26,7 @@ export default function HabitForm(props: HabitFormProps) {
         event.stopPropagation();
 
         if (isValid) {
-          onSubmit(value);
-          setValue("");
+          setValue(onSubmit(value));
           setValidated(false);
         } else {
           setValidated(true);
