@@ -15,7 +15,7 @@ type HabitItemProps = {
   habit: Habit;
 };
 
-const HabitItem = (props: HabitItemProps) => {
+export default function HabitItem(props: HabitItemProps) {
   const { habit } = props;
   const { id, isComplete, label } = habit;
 
@@ -56,6 +56,4 @@ const HabitItem = (props: HabitItemProps) => {
       </Button>
     </ListGroupItem>
   );
-};
-
-export default HabitItem;
+}

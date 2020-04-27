@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { RootState } from "../app/store";
 import HabitForm from "../habit/HabitForm";
 import { editLabel } from "../habit/habitSlice";
+import HistoryCalendar from "../history/HistoryCalendar";
 
 interface RouteParams {
   label: string;
@@ -44,6 +45,7 @@ export default function DetailsPage() {
           return newLabel;
         }}
       />
+      <HistoryCalendar />
     </>
   );
 }
