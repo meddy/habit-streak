@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 
 type HabitFormProps = {
   initialValue?: string;
@@ -8,6 +8,7 @@ type HabitFormProps = {
   onSubmit: (label: string) => string;
 };
 
+// Breaks on mobile screen
 export default function HabitForm(props: HabitFormProps) {
   const { initialValue = "", existing, submitLabel, onSubmit } = props;
   const [value, setValue] = useState(initialValue);
@@ -18,7 +19,6 @@ export default function HabitForm(props: HabitFormProps) {
 
   return (
     <Form
-      inline
       className="mb-3"
       noValidate
       onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
@@ -33,17 +33,25 @@ export default function HabitForm(props: HabitFormProps) {
         }
       }}
     >
-      <Form.Control
-        className="flex-fill mr-3"
-        isInvalid={validated ? !isValid : undefined}
-        isValid={validated ? isValid : undefined}
-        onChange={(event: React.FormEvent<HTMLInputElement>) => {
-          setValue(event.currentTarget.value);
-        }}
-        placeholder="I want to..."
-        value={value}
-      />
-      <Button type="submit">{submitLabel}</Button>
+      <Row>
+        <Col md={9} lg={8} xl={9}>
+          <Form.Control
+            className="mb-2"
+            isInvalid={validated ? !isValid : undefined}
+            isValid={validated ? isValid : undefined}
+            onChange={(event: React.FormEvent<HTMLInputElement>) => {
+              setValue(event.currentTarget.value);
+            }}
+            placeholder="I want to..."
+            value={value}
+          />
+        </Col>
+        <Col>
+          <Button block type="submit">
+            {submitLabel}
+          </Button>
+        </Col>
+      </Row>
     </Form>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
+import { Col, ListGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../app/store";
@@ -14,14 +14,21 @@ export default function HomePage() {
 
   return (
     <>
-      <HabitForm
-        existing={existing}
-        submitLabel="Add Habit"
-        onSubmit={(label) => {
-          dispatch(addHabit(label));
-          return "";
-        }}
-      />
+      <Row>
+        <Col md={12} lg={6}>
+          <h1>Habit Streak</h1>
+        </Col>
+        <Col>
+          <HabitForm
+            existing={existing}
+            submitLabel="Add Habit"
+            onSubmit={(label) => {
+              dispatch(addHabit(label));
+              return "";
+            }}
+          />
+        </Col>
+      </Row>
       <ListGroup>
         {habits.map((habit) => (
           <HabitItem key={habit.label} habit={habit} />

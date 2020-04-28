@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
-import { Breadcrumb } from "react-bootstrap";
+import { Breadcrumb, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { RootState } from "../app/store";
@@ -36,15 +36,22 @@ export default function DetailsPage() {
         </Breadcrumb.Item>
         <Breadcrumb.Item active>Habit Details</Breadcrumb.Item>
       </Breadcrumb>
-      <HabitForm
-        initialValue={label}
-        existing={existing}
-        submitLabel="Rename"
-        onSubmit={(newLabel) => {
-          dispatch(editLabel({ id, label: newLabel }));
-          return newLabel;
-        }}
-      />
+      <Row>
+        <Col md={12} lg={6}>
+          Stats go here
+        </Col>
+        <Col>
+          <HabitForm
+            initialValue={label}
+            existing={existing}
+            submitLabel="Rename"
+            onSubmit={(newLabel) => {
+              dispatch(editLabel({ id, label: newLabel }));
+              return newLabel;
+            }}
+          />
+        </Col>
+      </Row>
       <HistoryCalendar />
     </>
   );
