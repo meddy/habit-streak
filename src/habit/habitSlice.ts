@@ -3,35 +3,22 @@ import { v4 as uuidv4 } from "uuid";
 
 export type Habit = {
   id: string;
-  label: string;
-  isComplete: boolean;
+  value: string;
 };
 
 type HabitSliceState = {
-  [key: string]: Habit;
+  [key: string]: string;
 };
 
 type EditLabelPayload = {
   id: string;
-  label: string;
+  value: string;
 };
 
 const initialState: HabitSliceState = {
-  "fde94b95-2059-4446-92e6-c23c5e92f6ac": {
-    id: "fde94b95-2059-4446-92e6-c23c5e92f6ac",
-    label: "Read a book",
-    isComplete: true,
-  },
-  "a834a10c-ea6d-454d-a381-09cc3258b11c": {
-    id: "a834a10c-ea6d-454d-a381-09cc3258b11c",
-    label: "Study Spanish",
-    isComplete: false,
-  },
-  "11470416-6669-48cc-ab03-64caea661a23": {
-    id: "11470416-6669-48cc-ab03-64caea661a23",
-    label: "Stretch 20 mins",
-    isComplete: false,
-  },
+  "fde94b95-2059-4446-92e6-c23c5e92f6ac": "Read a book",
+  "a834a10c-ea6d-454d-a381-09cc3258b11c": "Study Spanish",
+  "11470416-6669-48cc-ab03-64caea661a23": "Stretch 20 mins",
 };
 
 const habitSlice = createSlice({
@@ -41,27 +28,19 @@ const habitSlice = createSlice({
     addHabit(state, action: PayloadAction<string>) {
       const { payload } = action;
       const id = uuidv4();
-      state[id] = {
-        id,
-        label: payload,
-        isComplete: false,
-      };
+      state[id] = payload;
     },
     editLabel(state, action: PayloadAction<EditLabelPayload>) {
-      const { id, label } = action.payload;
+      const { id, value } = action.payload;
       if (state[id]) {
-        state[id].label = label;
+        state[id] = value;
       } else {
         return state;
       }
     },
-    toggleHabit(state, action: PayloadAction<string>) {
-      const { payload } = action;
-      state[payload].isComplete = !state[payload].isComplete;
-    },
   },
 });
 
-export const { addHabit, editLabel, toggleHabit } = habitSlice.actions;
+export const { addHabit, editLabel } = habitSlice.actions;
 
 export default habitSlice;

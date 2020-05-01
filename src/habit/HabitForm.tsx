@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 
+import { Habit } from "./habitSlice";
+
 type HabitFormProps = {
   initialValue?: string;
-  existing: string[];
+  existing: Habit[];
   submitLabel: string;
   onSubmit: (label: string) => string;
 };
 
-// Breaks on mobile screen
 export default function HabitForm(props: HabitFormProps) {
   const { initialValue = "", existing, submitLabel, onSubmit } = props;
   const [value, setValue] = useState(initialValue);
   const [validated, setValidated] = useState(false);
 
   const isValid =
-    value.length > 0 && value.length < 100 && !existing.includes(value);
+    value.length > 0 &&
+    value.length < 100 &&
+    !existing.map((habit) => habit.value).includes(value);
 
   return (
     <Form

@@ -10,24 +10,23 @@ import { editLabel } from "../habit/habitSlice";
 import HistoryCalendar from "../history/HistoryCalendar";
 
 interface RouteParams {
-  label: string;
+  id: string;
 }
 
 export default function DetailsPage() {
   const dispatch = useDispatch();
   const params = useParams<RouteParams>();
-  const habit = useSelector((state: RootState) => state.habits[params.label]);
-  const existing = useSelector((state: RootState) =>
-    Object.values(state.habits)
-      .map((habit) => habit.label)
-      .filter((label) => label !== habit.label)
+  const habits = useSelector((state: RootState) =>
+    Object.keys(state.habits).map((id) => ({ id, value: state.habits[id] }))
   );
+
+  const habit = habits.find((habit) => habit.id === params.id);
 
   if (!habit) {
     return <Redirect to="/" />;
   }
 
-  const { id, label } = habit;
+  const { id, value } = habit;
   return (
     <>
       <Breadcrumb>
@@ -42,12 +41,12 @@ export default function DetailsPage() {
         </Col>
         <Col>
           <HabitForm
-            initialValue={label}
-            existing={existing}
+            initialValue={value}
+            existing={habits}
             submitLabel="Rename"
-            onSubmit={(newLabel) => {
-              dispatch(editLabel({ id, label: newLabel }));
-              return newLabel;
+            onSubmit={(newValue) => {
+              dispatch(editLabel({ id, value: newValue }));
+              return newValue;
             }}
           />
         </Col>

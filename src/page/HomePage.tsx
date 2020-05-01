@@ -9,8 +9,9 @@ import { addHabit } from "../habit/habitSlice";
 
 export default function HomePage() {
   const dispatch = useDispatch();
-  const habits = useSelector((state: RootState) => Object.values(state.habits));
-  const existing = habits.map((habit) => habit.label);
+  const habits = useSelector((state: RootState) =>
+    Object.keys(state.habits).map((id) => ({ id, value: state.habits[id] }))
+  );
 
   return (
     <>
@@ -20,10 +21,10 @@ export default function HomePage() {
         </Col>
         <Col>
           <HabitForm
-            existing={existing}
+            existing={habits}
             submitLabel="Add Habit"
-            onSubmit={(label) => {
-              dispatch(addHabit(label));
+            onSubmit={(newHabit) => {
+              dispatch(addHabit(newHabit));
               return "";
             }}
           />
@@ -31,7 +32,7 @@ export default function HomePage() {
       </Row>
       <ListGroup>
         {habits.map((habit) => (
-          <HabitItem key={habit.label} habit={habit} />
+          <HabitItem key={habit.id} habit={habit} />
         ))}
       </ListGroup>
     </>
