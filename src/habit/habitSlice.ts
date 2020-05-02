@@ -15,11 +15,7 @@ interface EditLabelPayload {
   value: string;
 }
 
-const initialState: HabitSliceState = {
-  "fde94b95-2059-4446-92e6-c23c5e92f6ac": "Read a book",
-  "a834a10c-ea6d-454d-a381-09cc3258b11c": "Study Spanish",
-  "11470416-6669-48cc-ab03-64caea661a23": "Stretch 20 mins",
-};
+const initialState: HabitSliceState = {};
 
 const habitSlice = createSlice({
   name: "habit",

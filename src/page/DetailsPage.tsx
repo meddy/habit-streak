@@ -33,7 +33,7 @@ export default function DetailsPage() {
         <Breadcrumb.Item linkAs="span">
           <Link to="/">Home</Link>
         </Breadcrumb.Item>
-        <Breadcrumb.Item active>Habit Details</Breadcrumb.Item>
+        <Breadcrumb.Item active>{value}</Breadcrumb.Item>
       </Breadcrumb>
       <Row>
         <Col md={12} lg={6}>
