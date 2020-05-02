@@ -26,7 +26,7 @@ export default function HabitItem(props: HabitItemProps) {
   const [isHovering, setHovering] = useState(false);
 
   const isComplete = useSelector((state: RootState) => {
-    const lastCompleted = state.history[id][-1];
+    const lastCompleted = (state.history[id] ?? [])[-1];
     return lastCompleted && lastCompleted === today();
   });
 
