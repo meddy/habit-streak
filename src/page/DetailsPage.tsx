@@ -51,7 +51,7 @@ export default function DetailsPage() {
           />
         </Col>
       </Row>
-      <HistoryCalendar />
+      <HistoryCalendar habit={habit} />
     </>
   );
 }
