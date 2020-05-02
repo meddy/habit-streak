@@ -14,11 +14,15 @@ const historySlice = createSlice({
   reducers: {
     toggleComplete(state, action: PayloadAction<string>) {
       const { payload } = action;
-      if (!state[payload]) {
-        state[payload] = [];
+      const history = state[payload] ?? [];
+
+      if (history[history.length - 1] === today()) {
+        history.pop();
+      } else {
+        history.push(today());
       }
 
-      state[payload].push(today());
+      state[payload] = history;
     },
   },
 });

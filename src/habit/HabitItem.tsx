@@ -26,8 +26,8 @@ export default function HabitItem(props: HabitItemProps) {
   const [isHovering, setHovering] = useState(false);
 
   const isComplete = useSelector((state: RootState) => {
-    const lastCompleted = (state.history[id] ?? [])[-1];
-    return lastCompleted && lastCompleted === today();
+    const history = state.history[id] ?? [];
+    return history[history.length - 1] === today();
   });
 
   const icon = isHovering || isComplete ? faClipboardCheck : faClipboard;
