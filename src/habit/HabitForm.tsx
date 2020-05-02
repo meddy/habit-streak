@@ -3,12 +3,12 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 
 import { Habit } from "./habitSlice";
 
-type HabitFormProps = {
+interface HabitFormProps {
   initialValue?: string;
   existing: Habit[];
   submitLabel: string;
   onSubmit: (label: string) => string;
-};
+}
 
 export default function HabitForm(props: HabitFormProps) {
   const { initialValue = "", existing, submitLabel, onSubmit } = props;

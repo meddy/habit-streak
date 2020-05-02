@@ -1,19 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
-export type Habit = {
+export interface Habit {
   id: string;
   value: string;
-};
+}
 
-type HabitSliceState = {
+interface HabitSliceState {
   [key: string]: string;
-};
+}
 
-type EditLabelPayload = {
+interface EditLabelPayload {
   id: string;
   value: string;
-};
+}
 
 const initialState: HabitSliceState = {
   "fde94b95-2059-4446-92e6-c23c5e92f6ac": "Read a book",

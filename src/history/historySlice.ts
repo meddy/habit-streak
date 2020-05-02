@@ -14,7 +14,7 @@ const historySlice = createSlice({
   reducers: {
     toggleComplete(state, action: PayloadAction<string>) {
       const { payload } = action;
-      if (state[payload] === undefined) {
+      if (!state[payload]) {
         state[payload] = [];
       }
 

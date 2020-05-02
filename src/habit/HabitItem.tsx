@@ -14,9 +14,9 @@ import { RootState } from "../app/store";
 import { toggleComplete } from "../history/historySlice";
 import { today } from "../utils";
 
-type HabitItemProps = {
+interface HabitItemProps {
   habit: Habit;
-};
+}
 
 export default function HabitItem(props: HabitItemProps) {
   const { id, value } = props.habit;
