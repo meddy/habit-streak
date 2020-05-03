@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { compareAsc, parse } from "date-fns";
+import { compareAsc } from "date-fns";
 
-import { today } from "../utils";
+import { today, parseDateStr } from "../utils";
 
 interface HistorySliceState {
   [key: string]: string[];
 }
 
-interface AddHistoryPayload {
+interface HistoryPayload {
   id: string;
   date: string;
 }
@@ -30,23 +30,30 @@ const historySlice = createSlice({
 
       state[payload] = history;
     },
-    addHistory(state, action: PayloadAction<AddHistoryPayload>) {
+    addHistory(state, action: PayloadAction<HistoryPayload>) {
       const { id, date } = action.payload;
       const history = state[id] ?? [];
 
       history.push(date);
-      history.sort((dateLeft, dateRight) => {
-        return compareAsc(
-          parse(dateLeft, "y-MM-dd", new Date()),
-          parse(dateRight, "y-MM-dd", new Date())
-        );
-      });
+      history.sort((dateLeft, dateRight) =>
+        compareAsc(parseDateStr(dateLeft), parseDateStr(dateRight))
+      );
 
       state[id] = history;
+    },
+    removeHistory(state, action: PayloadAction<HistoryPayload>) {
+      const { id, date: removeDate } = action.payload;
+      const history = state[id] ?? [];
+
+      state[id] = history.filter((date) => date !== removeDate);
     },
   },
 });
 
-export const { toggleComplete, addHistory } = historySlice.actions;
+export const {
+  toggleComplete,
+  addHistory,
+  removeHistory,
+} = historySlice.actions;
 
 export default historySlice;

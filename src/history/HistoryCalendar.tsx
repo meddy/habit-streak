@@ -3,13 +3,16 @@ import { useSelector } from "react-redux";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import { isAfter, format } from "date-fns";
 
 import "@fullcalendar/core/main.css";
 import "@fullcalendar/daygrid/main.css";
 
+import AddHistoryModal from "./AddHistoryModal";
 import { RootState } from "../app/store";
 import { Habit } from "../habit/habitSlice";
-import AddHistoryModal from "./AddHistoryModal";
+import { parseDateStr } from "../utils";
+import RemoveHistoryModal from "./RemoveHistoryModal";
 
 interface HistoryCalendarProps {
   habit: Habit;
@@ -20,6 +23,8 @@ export default function HistoryCalendar(props: HistoryCalendarProps) {
   const { id, value } = habit;
 
   const [date, setDate] = useState("");
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showRemoveModal, setShowRemoveModal] = useState(false);
 
   const events = useSelector((state: RootState) =>
     (state.history[id] ?? []).map((date) => ({ title: value, date }))
@@ -35,23 +40,41 @@ export default function HistoryCalendar(props: HistoryCalendarProps) {
           right: "",
         }}
         plugins={[dayGridPlugin, interactionPlugin]}
-        dateClick={({ dateStr }) => {
+        dateClick={(info) => {
+          const { dateStr } = info;
           const exists = !!events.find((event) => event.date === dateStr);
-          if (!exists) {
+          if (!exists && !isAfter(parseDateStr(dateStr), new Date())) {
             setDate(dateStr);
+            setShowAddModal(true);
+          }
+        }}
+        eventClick={(info) => {
+          const { start } = info.event;
+          if (start instanceof Date) {
+            setDate(format(start, "Y-MM-dd"));
+            setShowRemoveModal(true);
           }
         }}
         events={events}
       />
-      {!!date.length && (
-        <AddHistoryModal
-          date={date}
-          habit={habit}
-          onClose={() => {
-            setDate("");
-          }}
-        />
-      )}
+      <AddHistoryModal
+        show={showAddModal}
+        date={date}
+        habit={habit}
+        onClose={() => {
+          setDate("");
+          setShowAddModal(false);
+        }}
+      />
+      <RemoveHistoryModal
+        show={showRemoveModal}
+        date={date}
+        habit={habit}
+        onClose={() => {
+          setDate("");
+          setShowRemoveModal(false);
+        }}
+      />
     </>
   );
 }
