@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { isAfter, format } from "date-fns";
+import { isAfter } from "date-fns";
 
 import "@fullcalendar/core/main.css";
 import "@fullcalendar/daygrid/main.css";
@@ -11,7 +11,7 @@ import "@fullcalendar/daygrid/main.css";
 import AddHistoryModal from "./AddHistoryModal";
 import { RootState } from "../app/store";
 import { Habit } from "../habit/habitSlice";
-import { parseDateStr } from "../utils";
+import { formatDate, parseDate } from "../utils";
 import RemoveHistoryModal from "./RemoveHistoryModal";
 
 interface HistoryCalendarProps {
@@ -43,7 +43,7 @@ export default function HistoryCalendar(props: HistoryCalendarProps) {
         dateClick={(info) => {
           const { dateStr } = info;
           const exists = !!events.find((event) => event.date === dateStr);
-          if (!exists && !isAfter(parseDateStr(dateStr), new Date())) {
+          if (!exists && !isAfter(parseDate(dateStr), new Date())) {
             setDate(dateStr);
             setShowAddModal(true);
           }
@@ -51,7 +51,7 @@ export default function HistoryCalendar(props: HistoryCalendarProps) {
         eventClick={(info) => {
           const { start } = info.event;
           if (start instanceof Date) {
-            setDate(format(start, "Y-MM-dd"));
+            setDate(formatDate(start));
             setShowRemoveModal(true);
           }
         }}

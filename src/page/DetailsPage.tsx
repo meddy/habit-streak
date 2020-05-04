@@ -8,6 +8,7 @@ import { RootState } from "../app/store";
 import HabitForm from "../habit/HabitForm";
 import { editLabel } from "../habit/habitSlice";
 import HistoryCalendar from "../history/HistoryCalendar";
+import Streak from "../history/Streak";
 
 interface RouteParams {
   id: string;
@@ -37,7 +38,7 @@ export default function DetailsPage() {
       </Breadcrumb>
       <Row>
         <Col md={12} lg={6}>
-          Stats go here
+          <Streak habit={habit} />
         </Col>
         <Col>
           <HabitForm

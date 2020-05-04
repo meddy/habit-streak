@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { compareAsc } from "date-fns";
 
-import { today, parseDateStr } from "../utils";
+import { today, parseDate } from "../utils";
 
 interface HistorySliceState {
   [key: string]: string[];
@@ -36,7 +36,7 @@ const historySlice = createSlice({
 
       history.push(date);
       history.sort((dateLeft, dateRight) =>
-        compareAsc(parseDateStr(dateLeft), parseDateStr(dateRight))
+        compareAsc(parseDate(dateLeft), parseDate(dateRight))
       );
 
       state[id] = history;
