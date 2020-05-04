@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faClipboard,
-  faClipboardCheck,
+  faSquare,
+  faCheckSquare,
   faEdit,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -30,7 +30,7 @@ export default function HabitItem(props: HabitItemProps) {
     return history[history.length - 1] === today();
   });
 
-  const icon = isHovering || isComplete ? faClipboardCheck : faClipboard;
+  const icon = isHovering || isComplete ? faCheckSquare : faSquare;
 
   const toggleHover = () => {
     setHovering(!isHovering);

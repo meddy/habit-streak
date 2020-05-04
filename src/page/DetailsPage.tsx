@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
-import { Breadcrumb, Col, Row } from "react-bootstrap";
+import { Breadcrumb, Card, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { RootState } from "../app/store";
@@ -36,22 +36,27 @@ export default function DetailsPage() {
         </Breadcrumb.Item>
         <Breadcrumb.Item active>{value}</Breadcrumb.Item>
       </Breadcrumb>
-      <Row>
-        <Col md={12} lg={6}>
-          <Streak habit={habit} />
-        </Col>
-        <Col>
-          <HabitForm
-            initialValue={value}
-            existing={habits}
-            submitLabel="Rename"
-            onSubmit={(newValue) => {
-              dispatch(editLabel({ id, value: newValue }));
-              return newValue;
-            }}
-          />
-        </Col>
-      </Row>
+      <Card className="mb-3">
+        <Card.Body>
+          <Row>
+            <Col md={12} lg={6}>
+              <Streak habit={habit} />
+            </Col>
+            <Col>
+              <HabitForm
+                initialValue={value}
+                existing={habits}
+                submitLabel="Rename"
+                onSubmit={(newValue) => {
+                  dispatch(editLabel({ id, value: newValue }));
+                  return newValue;
+                }}
+              />
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
+      <h2 className="display-3">Habit History</h2>
       <HistoryCalendar habit={habit} />
     </>
   );

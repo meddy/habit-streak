@@ -15,14 +15,12 @@ export default function Streak(props: StreakProps) {
   const streak = useSelector((state: RootState) => {
     const history = state.history[habit.id] ?? [];
     if (!history.length) {
-      console.log("test");
       return 0;
     }
 
     const lastIndex = history.length - 1;
     const latest = history[lastIndex];
     if (latest !== today() && latest !== formatDate(subDays(new Date(), 1))) {
-      console.log("test2");
       return 0;
     }
 
@@ -40,5 +38,13 @@ export default function Streak(props: StreakProps) {
     return streak;
   });
 
-  return <p>Streak: {streak}</p>;
+  const noun = streak === 1 ? "day" : "days";
+  return (
+    <h3>
+      Streak{" "}
+      <small className="text-muted">
+        {streak} {noun}
+      </small>
+    </h3>
+  );
 }
