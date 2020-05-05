@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { RootState } from "../app/store";
 import HabitForm from "../habit/HabitForm";
 import { editLabel } from "../habit/habitSlice";
+import DeleteHabitButton from "../habit/DeleteHabitButton";
 import HistoryCalendar from "../history/HistoryCalendar";
 import Streak from "../history/Streak";
 
@@ -39,10 +40,10 @@ export default function DetailsPage() {
       <Card className="mb-3">
         <Card.Body>
           <Row>
-            <Col md={12} lg={6}>
+            <Col lg={12} xl={3}>
               <Streak habit={habit} />
             </Col>
-            <Col>
+            <Col lg={9} xl={7}>
               <HabitForm
                 initialValue={value}
                 existing={habits}
@@ -53,10 +54,12 @@ export default function DetailsPage() {
                 }}
               />
             </Col>
+            <Col lg={3} xl={2}>
+              <DeleteHabitButton habit={habit} />
+            </Col>
           </Row>
         </Card.Body>
       </Card>
-      <h2 className="display-3">Habit History</h2>
       <HistoryCalendar habit={habit} />
     </>
   );

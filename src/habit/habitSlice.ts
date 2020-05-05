@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
+import { deleteHabit } from "../app/actions";
+
 export interface Habit {
   id: string;
   value: string;
@@ -33,6 +35,12 @@ const habitSlice = createSlice({
       } else {
         return state;
       }
+    },
+  },
+  extraReducers: {
+    [deleteHabit.type]: (state, action: PayloadAction<string>) => {
+      const id = action.payload;
+      delete state[id];
     },
   },
 });

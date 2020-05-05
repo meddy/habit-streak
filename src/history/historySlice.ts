@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { compareAsc } from "date-fns";
 
+import { deleteHabit } from "../app/actions";
 import { today, parseDate } from "../utils";
 
 interface HistorySliceState {
@@ -46,6 +47,12 @@ const historySlice = createSlice({
       const history = state[id] ?? [];
 
       state[id] = history.filter((date) => date !== removeDate);
+    },
+  },
+  extraReducers: {
+    [deleteHabit.type]: (state, action) => {
+      const id = action.payload;
+      delete state[id];
     },
   },
 });
