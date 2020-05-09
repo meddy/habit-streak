@@ -1,10 +1,10 @@
 import React from "react";
-import { Col, ListGroup, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../app/store";
 import HabitForm from "../habit/HabitForm";
-import HabitItem from "../habit/HabitItem";
+import HabitList from "../habit/HabitList";
 import { addHabit } from "../habit/habitSlice";
 
 export default function HomePage() {
@@ -30,11 +30,7 @@ export default function HomePage() {
           />
         </Col>
       </Row>
-      <ListGroup>
-        {habits.map((habit) => (
-          <HabitItem key={habit.id} habit={habit} />
-        ))}
-      </ListGroup>
+      <HabitList habits={habits} />
     </>
   );
 }
