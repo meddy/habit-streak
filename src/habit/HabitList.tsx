@@ -4,8 +4,7 @@ import { useDispatch } from "react-redux";
 import { ListGroup } from "react-bootstrap";
 
 import HabitItem from "./HabitItem";
-import { Habit } from "./habitSlice";
-import { reorder } from "./orderSlice";
+import { Habit, reorder } from "./habitSlice";
 
 interface HabitListProps {
   habits: Habit[];

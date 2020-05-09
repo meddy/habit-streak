@@ -50,7 +50,7 @@ const historySlice = createSlice({
     },
   },
   extraReducers: {
-    [deleteHabit.type]: (state, action) => {
+    [deleteHabit.type](state, action) {
       const id = action.payload;
       delete state[id];
     },

@@ -18,9 +18,7 @@ interface RouteParams {
 export default function DetailsPage() {
   const dispatch = useDispatch();
   const params = useParams<RouteParams>();
-  const habits = useSelector((state: RootState) =>
-    Object.keys(state.habits).map((id) => ({ id, value: state.habits[id] }))
-  );
+  const habits = useSelector((state: RootState) => state.habits);
 
   const habit = habits.find((habit) => habit.id === params.id);
 

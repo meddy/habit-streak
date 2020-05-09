@@ -8,43 +8,54 @@ export interface Habit {
   value: string;
 }
 
-interface HabitSliceState {
-  [key: string]: string;
-}
-
 interface EditLabelPayload {
   id: string;
   value: string;
 }
 
-const initialState: HabitSliceState = {};
+interface ReorderPayload {
+  sourceIndex: number;
+  destinationIndex: number;
+}
+
+const initialState: Habit[] = [];
 
 const habitSlice = createSlice({
   name: "habit",
   initialState,
   reducers: {
     addHabit(state, action: PayloadAction<string>) {
-      const { payload } = action;
-      const id = uuidv4();
-      state[id] = payload;
+      state.push({ id: uuidv4(), value: action.payload });
     },
     editLabel(state, action: PayloadAction<EditLabelPayload>) {
       const { id, value } = action.payload;
-      if (state[id]) {
-        state[id] = value;
+      const habit = state.find((habit) => habit.id === id);
+      if (habit) {
+        habit.id = id;
+        habit.value = value;
+      } else {
+        return state;
+      }
+    },
+    reorder(state, action: PayloadAction<ReorderPayload>) {
+      const { sourceIndex, destinationIndex } = action.payload;
+      const [id] = state.splice(sourceIndex, 1);
+      state.splice(destinationIndex, 0, id);
+    },
+  },
+  extraReducers: {
+    [deleteHabit.type](state, action: PayloadAction<string>) {
+      const id = action.payload;
+      const index = state.findIndex((habit) => habit.id === id);
+      if (typeof index !== "undefined") {
+        state.splice(index, 1);
       } else {
         return state;
       }
     },
   },
-  extraReducers: {
-    [deleteHabit.type]: (state, action: PayloadAction<string>) => {
-      const id = action.payload;
-      delete state[id];
-    },
-  },
 });
 
-export const { addHabit, editLabel } = habitSlice.actions;
+export const { addHabit, editLabel, reorder } = habitSlice.actions;
 
 export default habitSlice;

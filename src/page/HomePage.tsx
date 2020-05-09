@@ -9,9 +9,7 @@ import { addHabit } from "../habit/habitSlice";
 
 export default function HomePage() {
   const dispatch = useDispatch();
-  const habits = useSelector((state: RootState) =>
-    Object.keys(state.habits).map((id) => ({ id, value: state.habits[id] }))
-  );
+  const habits = useSelector((state: RootState) => state.habits);
 
   return (
     <>
