@@ -37,12 +37,11 @@ export default function HabitList(props: HabitListProps) {
             <ListGroup>
               {habits.map((habit, index) => (
                 <Draggable key={habit.id} draggableId={habit.id} index={index}>
-                  {(provided, snapshot) => (
+                  {(provided) => (
                     <div
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      style={provided.draggableProps.style}
                     >
                       <HabitItem habit={habit} />
                     </div>
