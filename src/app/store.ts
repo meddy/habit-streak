@@ -32,4 +32,10 @@ export const persistor = persistStore(store);
 
 export type AppDispatch = typeof store.dispatch;
 
+// not authenticated
+// authenticated -> sync data
+// merge and local with remote
+// keep local, then download remote
+// then write final result to remote
+
 export default store;
