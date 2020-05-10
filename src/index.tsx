@@ -2,12 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import * as firebase from "firebase/app";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "firebase/auth";
 
 import * as serviceWorker from "./serviceWorker";
 import App from "./app/App";
 import store, { persistor } from "./app/store";
+import firebaseConfig from "./firebase.config.json";
 
-import "bootstrap/dist/css/bootstrap.min.css";
+firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <React.StrictMode>
