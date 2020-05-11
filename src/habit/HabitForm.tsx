@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 import { Habit } from "./habitSlice";
 
@@ -22,6 +22,7 @@ export default function HabitForm(props: HabitFormProps) {
 
   return (
     <Form
+      inline
       className="mb-3"
       noValidate
       onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
@@ -36,25 +37,19 @@ export default function HabitForm(props: HabitFormProps) {
         }
       }}
     >
-      <Row>
-        <Col md={9} lg={8} xl={9}>
-          <Form.Control
-            className="mb-2"
-            isInvalid={validated ? !isValid : undefined}
-            isValid={validated ? isValid : undefined}
-            onChange={(event: React.FormEvent<HTMLInputElement>) => {
-              setValue(event.currentTarget.value);
-            }}
-            placeholder="I want to..."
-            value={value}
-          />
-        </Col>
-        <Col>
-          <Button block type="submit">
-            {submitLabel}
-          </Button>
-        </Col>
-      </Row>
+      <Form.Control
+        className="flex-fill habitForm__input"
+        isInvalid={validated ? !isValid : undefined}
+        isValid={validated ? isValid : undefined}
+        onChange={(event: React.FormEvent<HTMLInputElement>) => {
+          setValue(event.currentTarget.value);
+        }}
+        placeholder="I want to..."
+        value={value}
+      />
+      <Button className="habitForm__button" type="submit">
+        {submitLabel}
+      </Button>
     </Form>
   );
 }

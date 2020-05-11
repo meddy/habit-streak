@@ -1,0 +1,14 @@
+.habitForm__input {
+  margin-right: $spacer;
+}
+
+@include media-breakpoint-down(xs) {
+  .habitForm__input {
+    margin-right: 0;
+    margin-bottom: $spacer * .5;
+  }
+
+  .habitForm__button {
+    width: 100%;
+  }
+}

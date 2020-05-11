@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import * as firebase from "firebase/app";
 
-import "bootstrap/dist/css/bootstrap.min.css";
 import "firebase/auth";
+import "./index.scss";
 
 import * as serviceWorker from "./serviceWorker";
 import App from "./app/App";
