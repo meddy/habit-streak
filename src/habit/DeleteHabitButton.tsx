@@ -20,7 +20,6 @@ export default function DeleteHabitButton(props: DeleteHabitButtonProps) {
   return (
     <>
       <Button
-        block
         variant="danger"
         onClick={() => {
           setShowModal(true);

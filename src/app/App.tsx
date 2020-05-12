@@ -17,16 +17,14 @@ export default function App() {
           <Button variant="primary">Log In</Button>
         </Container>
       </Navbar>
-      <Container className="home__container">
-        <Switch>
-          <Route path="/" exact>
-            <HomePage />
-          </Route>
-          <Route path="/details/:id" exact>
-            <DetailsPage />
-          </Route>
-        </Switch>
-      </Container>
+      <Switch>
+        <Route path="/" exact>
+          <HomePage />
+        </Route>
+        <Route path="/details/:id" exact>
+          <DetailsPage />
+        </Route>
+      </Switch>
     </BrowserRouter>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
-import { Breadcrumb, Card, Col, Row } from "react-bootstrap";
+import { Breadcrumb, Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { RootState } from "../app/store";
@@ -28,7 +28,7 @@ export default function DetailsPage() {
 
   const { id, value } = habit;
   return (
-    <>
+    <Container>
       <Breadcrumb>
         <Breadcrumb.Item linkAs="span">
           <Link to="/">Home</Link>
@@ -41,7 +41,7 @@ export default function DetailsPage() {
             <Col lg={12} xl={3}>
               <Streak habit={habit} />
             </Col>
-            <Col lg={9} xl={7}>
+            <Col xl={9}>
               <HabitForm
                 initialValue={value}
                 existing={habits}
@@ -51,14 +51,12 @@ export default function DetailsPage() {
                   return newValue;
                 }}
               />
-            </Col>
-            <Col lg={3} xl={2}>
               <DeleteHabitButton habit={habit} />
             </Col>
           </Row>
         </Card.Body>
       </Card>
       <HistoryCalendar habit={habit} />
-    </>
+    </Container>
   );
 }

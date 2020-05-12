@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Container } from "react-bootstrap";
 
 import { RootState } from "../app/store";
 import HabitForm from "../habit/HabitForm";
@@ -14,7 +15,7 @@ export default function HomePage() {
   // move habit form under
   // implement email link login
   return (
-    <>
+    <Container className="home__container">
       <HabitForm
         existing={habits}
         submitLabel="Add Habit"
@@ -24,6 +25,6 @@ export default function HomePage() {
         }}
       />
       <HabitList habits={habits} />
-    </>
+    </Container>
   );
 }
