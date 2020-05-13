@@ -1,0 +1,11 @@
+{
+  "extends": ["react-app"],
+  "plugins": ["import"],
+  "rules": {
+    "import/order": ["warn", {
+      "newlines-between": "always",
+      "alphabetize": { "order": "asc" }
+    }],
+    "react/jsx-sort-props": 1
+  }
+}

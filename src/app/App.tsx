@@ -2,13 +2,13 @@ import React from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import HomePage from "../page/HomePage";
 import DetailsPage from "../page/DetailsPage";
+import HomePage from "../page/HomePage";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Navbar bg="dark" variant="dark" expand="lg" className="mb-3">
+      <Navbar bg="dark" className="mb-3" expand="lg" variant="dark">
         <Container>
           <Navbar.Brand href="#home">Habit Streak</Navbar.Brand>
           <Nav className="mr-auto">
@@ -18,10 +18,10 @@ export default function App() {
         </Container>
       </Navbar>
       <Switch>
-        <Route path="/" exact>
+        <Route exact path="/">
           <HomePage />
         </Route>
-        <Route path="/details/:id" exact>
+        <Route exact path="/details/:id">
           <DetailsPage />
         </Route>
       </Switch>

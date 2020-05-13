@@ -1,7 +1,7 @@
 import React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { useDispatch } from "react-redux";
 import { ListGroup } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 
 import HabitItem from "./HabitItem";
 import { Habit, reorder } from "./habitSlice";
@@ -36,7 +36,7 @@ export default function HabitList(props: HabitListProps) {
           <div ref={provided.innerRef} {...provided.droppableProps}>
             <ListGroup>
               {habits.map((habit, index) => (
-                <Draggable key={habit.id} draggableId={habit.id} index={index}>
+                <Draggable draggableId={habit.id} index={index} key={habit.id}>
                   {(provided) => (
                     <div
                       ref={provided.innerRef}

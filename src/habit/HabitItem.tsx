@@ -1,18 +1,19 @@
-import React, { useState } from "react";
-import { Button, ListGroupItem } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSquare,
   faCheckSquare,
   faEdit,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from "react";
+import { Button, ListGroupItem } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-import { Habit } from "./habitSlice";
 import { RootState } from "../app/store";
 import { toggleComplete } from "../history/historySlice";
 import { today } from "../utils";
+
+import { Habit } from "./habitSlice";
 
 interface HabitItemProps {
   habit: Habit;
@@ -54,11 +55,11 @@ export default function HabitItem(props: HabitItemProps) {
         <span>{value}</span>
       </div>
       <Button
-        size="sm"
-        variant="secondary"
         onClick={() => {
           history.push(`/details/${id}`);
         }}
+        size="sm"
+        variant="secondary"
       >
         <FontAwesomeIcon icon={faEdit} />
       </Button>

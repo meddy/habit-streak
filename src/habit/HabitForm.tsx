@@ -22,8 +22,8 @@ export default function HabitForm(props: HabitFormProps) {
 
   return (
     <Form
-      inline
       className="mb-3"
+      inline
       noValidate
       onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();

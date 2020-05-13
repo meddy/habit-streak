@@ -14,21 +14,21 @@ export default function ConfirmModal(props: ConfirmModalProps) {
   const { body, button, onClose, onConfirm, show, title } = props;
 
   return (
-    <Modal show={show} onHide={onClose}>
+    <Modal onHide={onClose} show={show}>
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>{body}</Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={onClose}>
+        <Button onClick={onClose} variant="secondary">
           Cancel
         </Button>
         <Button
-          variant="primary"
           onClick={() => {
             onConfirm();
             onClose();
           }}
+          variant="primary"
         >
           {button}
         </Button>

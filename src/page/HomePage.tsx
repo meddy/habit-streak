@@ -1,6 +1,6 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Container } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../app/store";
 import HabitForm from "../habit/HabitForm";
@@ -18,11 +18,11 @@ export default function HomePage() {
     <Container className="home__container">
       <HabitForm
         existing={habits}
-        submitLabel="Add Habit"
         onSubmit={(newHabit) => {
           dispatch(addHabit(newHabit));
           return "";
         }}
+        submitLabel="Add Habit"
       />
       <HabitList habits={habits} />
     </Container>

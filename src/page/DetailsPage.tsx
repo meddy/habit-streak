@@ -1,13 +1,13 @@
 import React from "react";
+import { Breadcrumb, Card, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
-import { Breadcrumb, Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { RootState } from "../app/store";
+import DeleteHabitButton from "../habit/DeleteHabitButton";
 import HabitForm from "../habit/HabitForm";
 import { editLabel } from "../habit/habitSlice";
-import DeleteHabitButton from "../habit/DeleteHabitButton";
 import HistoryCalendar from "../history/HistoryCalendar";
 import Streak from "../history/Streak";
 
@@ -43,13 +43,13 @@ export default function DetailsPage() {
             </Col>
             <Col xl={9}>
               <HabitForm
-                initialValue={value}
                 existing={habits}
-                submitLabel="Rename"
+                initialValue={value}
                 onSubmit={(newValue) => {
                   dispatch(editLabel({ id, value: newValue }));
                   return newValue;
                 }}
+                submitLabel="Rename"
               />
               <DeleteHabitButton habit={habit} />
             </Col>
