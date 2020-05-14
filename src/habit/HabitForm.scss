@@ -1,6 +1,6 @@
 .habitForm_form {
-  margin-bottom: 1rem;
   flex: 1;
+  margin-bottom: 1rem;
 }
 
 .habitForm__input {
@@ -10,8 +10,8 @@
 
 @include media-breakpoint-down(xs) {
   .habitForm__input {
-    margin-right: 0;
     margin-bottom: $spacer * .5;
+    margin-right: 0;
   }
 
   .habitForm__button {

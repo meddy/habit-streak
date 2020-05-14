@@ -14,7 +14,7 @@ export default function App() {
           <Nav className="mr-auto">
             <Nav.Link href="#home">About</Nav.Link>
           </Nav>
-          <Button variant="primary">Log In</Button>
+          <Button variant="success">Log In</Button>
         </Container>
       </Navbar>
       <Switch>

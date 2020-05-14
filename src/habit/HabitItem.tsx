@@ -48,7 +48,7 @@ export default function HabitItem(props: HabitItemProps) {
           onMouseEnter={toggleHover}
           onMouseLeave={toggleHover}
           size="sm"
-          variant={isComplete ? "success" : "secondary"}
+          variant={isComplete ? "success" : "info"}
         >
           <FontAwesomeIcon icon={icon} />
         </Button>
@@ -59,7 +59,7 @@ export default function HabitItem(props: HabitItemProps) {
           history.push(`/details/${id}`);
         }}
         size="sm"
-        variant="secondary"
+        variant="info"
       >
         <FontAwesomeIcon icon={faEdit} />
       </Button>
