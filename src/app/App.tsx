@@ -1,9 +1,11 @@
 import React from "react";
-import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import DetailsPage from "../page/DetailsPage";
 import HomePage from "../page/HomePage";
+
+import LoginButton from "./LoginButton";
 
 export default function App() {
   return (
@@ -14,7 +16,7 @@ export default function App() {
           <Nav className="mr-auto">
             <Nav.Link href="#home">About</Nav.Link>
           </Nav>
-          <Button variant="success">Log In</Button>
+          <LoginButton />
         </Container>
       </Navbar>
       <Switch>
