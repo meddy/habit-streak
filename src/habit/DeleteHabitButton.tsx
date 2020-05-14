@@ -21,6 +21,7 @@ export default function DeleteHabitButton(props: DeleteHabitButtonProps) {
   return (
     <>
       <Button
+        className="deleteHabitButton__button"
         onClick={() => {
           setShowModal(true);
         }}

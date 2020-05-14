@@ -1,4 +1,10 @@
+.habitForm_form {
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
 .habitForm__input {
+  flex: 1 1 auto;
   margin-right: $spacer;
 }
 

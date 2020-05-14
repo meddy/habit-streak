@@ -22,7 +22,7 @@ export default function HabitForm(props: HabitFormProps) {
 
   return (
     <Form
-      className="mb-3"
+      className="habitForm_form"
       inline
       noValidate
       onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
@@ -38,7 +38,7 @@ export default function HabitForm(props: HabitFormProps) {
       }}
     >
       <Form.Control
-        className="flex-fill habitForm__input"
+        className="habitForm__input"
         isInvalid={validated ? !isValid : undefined}
         isValid={validated ? isValid : undefined}
         onChange={(event: React.FormEvent<HTMLInputElement>) => {

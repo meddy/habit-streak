@@ -41,7 +41,7 @@ export default function DetailsPage() {
             <Col lg={12} xl={3}>
               <Streak habit={habit} />
             </Col>
-            <Col xl={9}>
+            <Col className="detailsPage__habitFormCol" xl={9}>
               <HabitForm
                 existing={habits}
                 initialValue={value}
