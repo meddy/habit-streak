@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import * as firebase from "firebase/app";
+import React, { ChangeEvent, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 
+const actionCodeSettings = {
+  url: window.location.href,
+  handleCodeInApp: true,
+};
+
 export default function LoginButton() {
-  const [show, setShow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [email, setEmail] = useState("");
+  const [validated, setValidated] = useState(false);
+
   return (
     <>
       <Button
         onClick={() => {
-          setShow(true);
+          setShowModal(true);
         }}
         variant="success"
       >
@@ -15,32 +24,50 @@ export default function LoginButton() {
       </Button>
       <Modal
         onHide={() => {
-          setShow(false);
+          setShowModal(false);
         }}
-        show={show}
+        show={showModal}
       >
         <Modal.Header closeButton>
           <Modal.Title>Login Via Email Link</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <Form>
+        <Form
+          noValidate
+          onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+            const form = event.currentTarget;
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+
+            setValidated(true);
+          }}
+          validated={validated}
+        >
+          <Modal.Body>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control placeholder="Enter email" type="email" />
+              <Form.Control
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setEmail(event.target.value);
+                }}
+                pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+                placeholder="Enter email"
+                required
+                type="email"
+                value={email}
+              />
+              <Form.Control.Feedback type="invalid">
+                Please enter a valid email.
+              </Form.Control.Feedback>
             </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            block
-            onClick={() => {
-              setShow(false);
-            }}
-            variant="primary"
-          >
-            Send Email
-          </Button>
-        </Modal.Footer>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button block type="submit" variant="primary">
+              Send Email
+            </Button>
+          </Modal.Footer>
+        </Form>
       </Modal>
     </>
   );
