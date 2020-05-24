@@ -41,7 +41,7 @@ export default function HabitForm(props: HabitFormProps) {
         className="habitForm__input"
         isInvalid={validated ? !isValid : undefined}
         isValid={validated ? isValid : undefined}
-        onChange={(event: React.FormEvent<HTMLInputElement>) => {
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           setValue(event.currentTarget.value);
         }}
         placeholder="I want to..."

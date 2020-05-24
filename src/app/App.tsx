@@ -1,4 +1,5 @@
-import React from "react";
+import firebase from "firebase/app";
+import React, { useEffect } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
@@ -8,6 +9,13 @@ import HomePage from "../page/HomePage";
 import LoginButton from "./LoginButton";
 
 export default function App() {
+  useEffect(() => {
+    if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+      // disable login button
+      // get email from local store, or prompt user to confirm email
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <Navbar bg="dark" className="mb-3" expand="lg" variant="dark">

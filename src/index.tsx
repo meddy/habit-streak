@@ -1,4 +1,4 @@
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";

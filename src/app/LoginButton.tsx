@@ -1,4 +1,4 @@
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 import React, { ChangeEvent, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 
@@ -33,14 +33,23 @@ export default function LoginButton() {
         </Modal.Header>
         <Form
           noValidate
-          onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
-            const form = event.currentTarget;
-            if (!form.checkValidity()) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-
+          onSubmit={async (event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            event.stopPropagation();
             setValidated(true);
+
+            const form = event.currentTarget;
+            if (form.checkValidity()) {
+              try {
+                await firebase
+                  .auth()
+                  .sendSignInLinkToEmail(email, actionCodeSettings);
+                // save email in local storage
+              } catch (err) {
+                // todo: do something
+                console.log(err);
+              }
+            }
           }}
           validated={validated}
         >
