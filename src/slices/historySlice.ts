@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { compareAsc } from "date-fns";
 
-import { deleteHabit } from "../app/actions";
+import { deleteHabit } from "../actions";
 import { today, parseDate } from "../utils";
 
 interface HistorySliceState {

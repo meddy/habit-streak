@@ -4,9 +4,8 @@ import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 
-import { deleteHabit } from "../app/actions";
-
-import { Habit } from "./habitSlice";
+import { deleteHabit } from "../actions";
+import { Habit } from "../slices/habitSlice";
 
 interface DeleteHabitButtonProps {
   habit: Habit;

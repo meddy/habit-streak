@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
-import { deleteHabit } from "../app/actions";
+import { deleteHabit } from "../actions";
 
 export interface Habit {
   id: string;

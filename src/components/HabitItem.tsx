@@ -9,11 +9,10 @@ import { Button, ListGroupItem } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { RootState } from "../app/store";
-import { toggleComplete } from "../history/historySlice";
+import { Habit } from "../slices/habitSlice";
+import { toggleComplete } from "../slices/historySlice";
+import { RootState } from "../store";
 import { today } from "../utils";
-
-import { Habit } from "./habitSlice";
 
 interface HabitItemProps {
   habit: Habit;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
-import { Habit } from "./habitSlice";
+import { Habit } from "../../slices/habitSlice";
 
 interface HabitFormProps {
   initialValue?: string;

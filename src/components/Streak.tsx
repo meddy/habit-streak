@@ -2,8 +2,8 @@ import { subDays } from "date-fns";
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { RootState } from "../app/store";
-import { Habit } from "../habit/habitSlice";
+import { Habit } from "../slices/habitSlice";
+import { RootState } from "../store";
 import { formatDate, parseDate, today } from "../utils";
 
 interface StreakProps {

@@ -2,10 +2,10 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
-import { RootState } from "../app/store";
-import HabitForm from "../habit/HabitForm";
-import HabitList from "../habit/HabitList";
-import { addHabit } from "../habit/habitSlice";
+import { addHabit } from "../../slices/habitSlice";
+import { RootState } from "../../store";
+import HabitForm from "../HabitForm";
+import HabitList from "../HabitList";
 
 export default function HomePage() {
   const dispatch = useDispatch();

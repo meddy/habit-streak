@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import { RootState } from "../app/store";
-import DeleteHabitButton from "../habit/DeleteHabitButton";
-import HabitForm from "../habit/HabitForm";
-import { editLabel } from "../habit/habitSlice";
-import HistoryCalendar from "../history/HistoryCalendar";
-import Streak from "../history/Streak";
+import { editLabel } from "../../slices/habitSlice";
+import { RootState } from "../../store";
+import DeleteHabitButton from "../DeleteHabitButton";
+import HabitForm from "../HabitForm";
+import HistoryCalendar from "../HistoryCalendar";
+import Streak from "../Streak";
 
 interface RouteParams {
   id: string;

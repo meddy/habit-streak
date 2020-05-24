@@ -3,8 +3,9 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { ListGroup } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 
+import { Habit, reorder } from "../slices/habitSlice";
+
 import HabitItem from "./HabitItem";
-import { Habit, reorder } from "./habitSlice";
 
 interface HabitListProps {
   habits: Habit[];

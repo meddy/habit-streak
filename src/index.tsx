@@ -7,10 +7,10 @@ import { PersistGate } from "redux-persist/integration/react";
 import "firebase/auth";
 import "./index.scss";
 
-import App from "./app/App";
-import store, { persistor } from "./app/store";
+import App from "./components/App";
 import firebaseConfig from "./firebase.config.json";
 import * as serviceWorker from "./serviceWorker";
+import store, { persistor } from "./store";
 
 firebase.initializeApp(firebaseConfig);
 

@@ -8,12 +8,12 @@ import { useDispatch, useSelector } from "react-redux";
 import "@fullcalendar/core/main.css";
 import "@fullcalendar/daygrid/main.css";
 
-import { RootState } from "../app/store";
-import ConfirmModal from "../common/ConfirmModal";
-import { Habit } from "../habit/habitSlice";
+import { Habit } from "../slices/habitSlice";
+import { addHistory, removeHistory } from "../slices/historySlice";
+import { RootState } from "../store";
 import { formatDate, parseDate } from "../utils";
 
-import { addHistory, removeHistory } from "./historySlice";
+import ConfirmModal from "./ConfirmModal";
 
 interface HistoryCalendarProps {
   habit: Habit;

@@ -3,9 +3,8 @@ import React, { useEffect } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import DetailsPage from "../page/DetailsPage";
-import HomePage from "../page/HomePage";
-
+import DetailsPage from "./DetailsPage";
+import HomePage from "./HomePage";
 import LoginButton from "./LoginButton";
 
 export default function App() {
