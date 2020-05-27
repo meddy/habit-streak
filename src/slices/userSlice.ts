@@ -3,7 +3,7 @@ import {
   createSlice,
   SerializedError,
 } from "@reduxjs/toolkit";
-import firebase from "firebase";
+import firebase from "firebase/app";
 
 interface UserSliceState {
   email: string | null;
@@ -16,9 +16,9 @@ interface SendEmailLinkPayload {
   url: string;
 }
 
-const sendEmailLink = createAsyncThunk(
+export const sendEmailLink = createAsyncThunk(
   "user/sendEmailLink",
-  async (payload: SendEmailLinkPayload, thunkAPI) => {
+  async (payload: SendEmailLinkPayload) => {
     const { email, url } = payload;
     await firebase
       .auth()

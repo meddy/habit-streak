@@ -8,10 +8,12 @@ import storage from "redux-persist/lib/storage";
 
 import habitSlice from "./slices/habitSlice";
 import historySlice from "./slices/historySlice";
+import userSlice from "./slices/userSlice";
 
 const rootReducer = combineReducers({
   habits: habitSlice.reducer,
   history: historySlice.reducer,
+  user: userSlice.reducer,
 });
 
 const persistConfig = {
