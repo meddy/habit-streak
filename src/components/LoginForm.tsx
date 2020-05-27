@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { sendEmailLink } from "../slices/userSlice";
+import { RootState } from "../store";
 
 interface LoginFormProps {
   show: boolean;
@@ -15,6 +16,7 @@ export default function LoginForm(props: LoginFormProps) {
   const dispatch = useDispatch();
   const [validated, setValidated] = useState(false);
   const [email, setEmail] = useState("");
+  const emailLinkSent = useSelector((state: RootState) => !!state.user.email);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -36,29 +38,36 @@ export default function LoginForm(props: LoginFormProps) {
       <Modal.Header closeButton>
         <Modal.Title>Login Via Email Link</Modal.Title>
       </Modal.Header>
-      <Form noValidate onSubmit={handleSubmit} validated={validated}>
+      {emailLinkSent && (
         <Modal.Body>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              onChange={handleChange}
-              pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
-              placeholder="Enter email"
-              required
-              type="email"
-              value={email}
-            />
-            <Form.Control.Feedback type="invalid">
-              Please enter a valid email.
-            </Form.Control.Feedback>
-          </Form.Group>
+          <p>Please check your email for a link to complete sign in.</p>
         </Modal.Body>
-        <Modal.Footer>
-          <Button block type="submit" variant="primary">
-            Send Email
-          </Button>
-        </Modal.Footer>
-      </Form>
+      )}
+      {!emailLinkSent && (
+        <Form noValidate onSubmit={handleSubmit} validated={validated}>
+          <Modal.Body>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                onChange={handleChange}
+                pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+                placeholder="Enter email"
+                required
+                type="email"
+                value={email}
+              />
+              <Form.Control.Feedback type="invalid">
+                Please enter a valid email.
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button block type="submit" variant="primary">
+              Send Email
+            </Button>
+          </Modal.Footer>
+        </Form>
+      )}
     </Modal>
   );
 }
