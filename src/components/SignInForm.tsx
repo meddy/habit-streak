@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendEmailLink } from "../slices/userSlice";
 import { RootState } from "../store";
 
-interface LoginFormProps {
+interface SignInFormProps {
   show: boolean;
   onHide: () => void;
 }
 
-export default function LoginForm(props: LoginFormProps) {
+export default function SignInForm(props: SignInFormProps) {
   const { show, onHide } = props;
 
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ export default function LoginForm(props: LoginFormProps) {
   return (
     <Modal onHide={onHide} show={show}>
       <Modal.Header closeButton>
-        <Modal.Title>Login Via Email Link</Modal.Title>
+        <Modal.Title>Sign In Via Email Link</Modal.Title>
       </Modal.Header>
       {emailLinkSent && (
         <Modal.Body>

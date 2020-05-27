@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
-import LoginForm from "./LoginForm";
+import SignInForm from "./SignInForm";
 
-export default function LoginButton() {
+export default function SignInButton() {
   const [showModal, setShowModal] = useState(false);
 
   const handleClick = () => {
@@ -17,9 +17,9 @@ export default function LoginButton() {
   return (
     <>
       <Button onClick={handleClick} variant="success">
-        Log In
+        Sign In
       </Button>
-      <LoginForm onHide={handleHide} show={showModal} />
+      <SignInForm onHide={handleHide} show={showModal} />
     </>
   );
 }

@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import DetailsPage from "./DetailsPage";
 import HomePage from "./HomePage";
-import LoginButton from "./LoginButton";
+import SignInButton from "./SignInButton";
 
 export default function App() {
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function App() {
           <Nav className="mr-auto">
             <Nav.Link href="#home">About</Nav.Link>
           </Nav>
-          <LoginButton />
+          <SignInButton />
         </Container>
       </Navbar>
       <Switch>
