@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
-import SignInForm from "./SignInForm";
+import SignInModal from "./SignInModal";
 
 export default function SignInButton() {
   const [showModal, setShowModal] = useState(false);
@@ -19,7 +19,7 @@ export default function SignInButton() {
       <Button onClick={handleClick} variant="success">
         Sign In
       </Button>
-      <SignInForm onHide={handleHide} show={showModal} />
+      <SignInModal onHide={handleHide} show={showModal} />
     </>
   );
 }

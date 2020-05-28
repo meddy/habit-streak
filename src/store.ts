@@ -10,16 +10,23 @@ import habitSlice from "./slices/habitSlice";
 import historySlice from "./slices/historySlice";
 import userSlice from "./slices/userSlice";
 
-const rootReducer = combineReducers({
-  habits: habitSlice.reducer,
-  history: historySlice.reducer,
-  user: userSlice.reducer,
-});
-
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ["user"],
 };
+
+const userPersistConfig = {
+  key: "user",
+  storage,
+  blacklist: ["loading"],
+};
+
+const rootReducer = combineReducers({
+  habits: habitSlice.reducer,
+  history: historySlice.reducer,
+  user: persistReducer(userPersistConfig, userSlice.reducer),
+});
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

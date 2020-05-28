@@ -1,15 +1,21 @@
 import firebase from "firebase/app";
 import React, { useEffect } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import DetailsPage from "./DetailsPage";
 import HomePage from "./HomePage";
 import SignInButton from "./SignInButton";
+import { RootState } from "../store";
 
 export default function App() {
+  const email = useSelector((state: RootState) => state.user.email);
+
   useEffect(() => {
     if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+      if (!email) {
+      }
       // disable login button
       // get email from local store, or prompt user to confirm email
     }

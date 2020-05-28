@@ -8,7 +8,7 @@ import firebase from "firebase/app";
 interface UserSliceState {
   email: string | null;
   error?: SerializedError | null;
-  pending: boolean;
+  loading: boolean | null;
 }
 
 interface SendEmailLinkPayload {
@@ -30,7 +30,7 @@ export const sendEmailLink = createAsyncThunk(
 const initialState: UserSliceState = {
   email: null,
   error: null,
-  pending: false,
+  loading: null,
 };
 
 const userSlice = createSlice({
@@ -39,13 +39,14 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: {
     [sendEmailLink.pending.type]: (state) => {
-      state.pending = true;
+      state.loading = true;
     },
     [sendEmailLink.fulfilled.type]: (state, action) => {
+      state.loading = false;
       state.email = action.payload;
     },
     [sendEmailLink.rejected.type]: (state, action) => {
-      state.pending = false;
+      state.loading = false;
       state.error = action.error;
     },
   },
