@@ -1,24 +1,22 @@
 import React, { useState } from "react";
-import { Modal } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
+
+import EmailModalForm from "./EmailModalForm";
 
 interface ConfirmEmailModalProps {
   show: boolean;
-  onHide: () => void;
 }
 
 export default function ConfirmEmailModal(props: ConfirmEmailModalProps) {
-  // const { show, onHide } = props;
-  // const [email, setEmail] = useState("");
-  //
-  // return (
-  //   <Modal onHide={onHide} show={show}>
-  //     <Modal.Header>
-  //       <Modal.Title>Confirm Email</Modal.Title>
-  //     </Modal.Header>
-  //     <Modal.Body></Modal.Body>
-  //     <Modal.Footer>
-  //       <Button block type="submit" variant="primary"></Button>
-  //     </Modal.Footer>
-  //   </Modal>
-  // );
+  const { show } = props;
+  const [value, setValue] = useState("");
+
+  return (
+    <Modal show={show}>
+      <Modal.Header>
+        <Modal.Title>Confirm Email</Modal.Title>
+      </Modal.Header>
+      <EmailModalForm />
+    </Modal>
+  );
 }

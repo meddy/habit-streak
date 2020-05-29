@@ -6,6 +6,7 @@ import {
 import firebase from "firebase/app";
 
 interface UserSliceState {
+  authenticated: boolean;
   email: string | null;
   error?: SerializedError | null;
   loading: boolean | null;
@@ -28,6 +29,7 @@ export const sendEmailLink = createAsyncThunk(
 );
 
 const initialState: UserSliceState = {
+  authenticated: false,
   email: null,
   error: null,
   loading: null,
@@ -36,7 +38,18 @@ const initialState: UserSliceState = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    receiveSignedIn(state) {
+      state.authenticated = true;
+    },
+    receiveSignedOut(state) {
+      state.authenticated = false;
+      state.email = null;
+    },
+    confirmEmail(state, action) {
+      state.email = action.payload;
+    },
+  },
   extraReducers: {
     [sendEmailLink.pending.type]: (state) => {
       state.loading = true;
