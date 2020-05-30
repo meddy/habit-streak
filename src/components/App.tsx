@@ -4,17 +4,21 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
+import { RootState } from "../store";
+
+import ConfirmEmailModal from "./ConfirmEmailModal";
 import DetailsPage from "./DetailsPage";
 import HomePage from "./HomePage";
 import SignInButton from "./SignInButton";
-import { RootState } from "../store";
 
 export default function App() {
   const email = useSelector((state: RootState) => state.user.email);
   const [showConfirmEmailModal, setShowConfirmEmail] = useState(false);
 
   useEffect(() => {
+    console.log("test");
     if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+      console.log("test2");
       if (!email) {
         setShowConfirmEmail(true);
         return;
@@ -43,6 +47,7 @@ export default function App() {
           <DetailsPage />
         </Route>
       </Switch>
+      <ConfirmEmailModal show={showConfirmEmailModal} />
     </BrowserRouter>
   );
 }

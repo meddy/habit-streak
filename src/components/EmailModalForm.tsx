@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 
 interface EmailModalForm {
-  disabled: boolean;
+  disabled?: boolean;
   onSubmit: (email: string) => void;
   submitLabel: string;
 }
 
 export default function EmailModalForm(props: EmailModalForm) {
-  const { disabled, onSubmit, submitLabel } = props;
+  const { disabled = false, onSubmit, submitLabel } = props;
   const [email, setEmail] = useState("");
   const [validated, setValidated] = useState(false);
 

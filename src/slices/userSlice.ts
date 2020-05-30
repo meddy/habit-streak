@@ -65,4 +65,10 @@ const userSlice = createSlice({
   },
 });
 
+export const {
+  receiveSignedIn,
+  receiveSignedOut,
+  confirmEmail,
+} = userSlice.actions;
+
 export default userSlice;
