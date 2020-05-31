@@ -19,7 +19,7 @@ const persistConfig = {
 const userPersistConfig = {
   key: "user",
   storage,
-  blacklist: ["loading"],
+  whitelist: ["email"],
 };
 
 const rootReducer = combineReducers({

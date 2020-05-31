@@ -39,15 +39,19 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    confirmEmail(state, action) {
+      state.email = action.payload;
+    },
+    receiveError(state, action) {
+      return state;
+      // show message
+    },
     receiveSignedIn(state) {
       state.authenticated = true;
     },
     receiveSignedOut(state) {
       state.authenticated = false;
       state.email = null;
-    },
-    confirmEmail(state, action) {
-      state.email = action.payload;
     },
   },
   extraReducers: {
