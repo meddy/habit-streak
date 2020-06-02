@@ -2,8 +2,8 @@ import firebase from "firebase/app";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "react-router-dom";
+import { PersistGate } from "redux-persist/integration/react";
 
 import "firebase/auth";
 import "./index.scss";
@@ -11,9 +11,18 @@ import "./index.scss";
 import App from "./components/App";
 import firebaseConfig from "./firebase.config.json";
 import * as serviceWorker from "./serviceWorker";
+import { receiveSignedIn, receiveSignedOut } from "./slices/userSlice";
 import store, { persistor } from "./store";
 
 firebase.initializeApp(firebaseConfig);
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    store.dispatch(receiveSignedIn());
+  } else {
+    store.dispatch(receiveSignedOut());
+  }
+});
 
 ReactDOM.render(
   <React.StrictMode>
