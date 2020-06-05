@@ -1,11 +1,12 @@
 import firebase from "firebase/app";
 import React, { useEffect, useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { Switch, Route, useHistory, useLocation } from "react-router-dom";
+import { shallowEqual, useSelector } from "react-redux";
+import { Switch, Route, useHistory } from "react-router-dom";
 
 import { RootState } from "../store";
 
+import AccountButton from "./AccountButton";
 import AppAlert from "./AppAlert";
 import ConfirmEmailModal from "./ConfirmEmailModal";
 import DetailsPage from "./DetailsPage";
@@ -14,7 +15,10 @@ import SignInButton from "./SignInButton";
 
 export default function App() {
   const history = useHistory();
-  const email = useSelector((state: RootState) => state.user.email);
+  const { email, authenticated } = useSelector(
+    (state: RootState) => state.user,
+    shallowEqual
+  );
   const [errorMessage, setErrorMessage] = useState("");
   const [showConfirmEmailModal, setShowConfirmEmail] = useState(false);
 
@@ -69,7 +73,8 @@ export default function App() {
           <Nav className="mr-auto">
             <Nav.Link href="#home">About</Nav.Link>
           </Nav>
-          <SignInButton />
+          {authenticated && <AccountButton />}
+          {!authenticated && <SignInButton />}
         </Container>
       </Navbar>
       <AppAlert message={errorMessage} onClose={handleDismissError} />
