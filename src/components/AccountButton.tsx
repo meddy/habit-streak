@@ -7,11 +7,7 @@ import AccountMenu from "./AccountMenu";
 
 export default function AccountButton() {
   return (
-    <OverlayTrigger
-      overlay={<AccountMenu />}
-      placement="bottom"
-      trigger="click"
-    >
+    <OverlayTrigger overlay={AccountMenu} placement="bottom" trigger="click">
       <Button variant="success">
         <FontAwesomeIcon icon={faUser} />
       </Button>
