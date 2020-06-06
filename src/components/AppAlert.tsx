@@ -1,5 +1,6 @@
+import { Container } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import React from "react";
-import { Alert, Container } from "react-bootstrap";
 
 interface AppAlertProps {
   message: string;
@@ -15,7 +16,7 @@ export default function AppAlert(props: AppAlertProps) {
 
   return (
     <Container>
-      <Alert dismissible onClose={onClose} variant="danger">
+      <Alert onClose={onClose} severity="error">
         {message}
       </Alert>
     </Container>

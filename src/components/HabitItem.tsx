@@ -1,11 +1,10 @@
+import { Button, ListItem } from "@material-ui/core";
 import {
-  faSquare,
-  faCheckSquare,
-  faEdit,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+  CheckBox as CheckBoxIcon,
+  CheckBoxOutlineBlank as CheckBoxOutlineBlankIcon,
+  Edit as EditIcon,
+} from "@material-ui/icons";
 import React, { useState } from "react";
-import { Button, ListGroupItem } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -30,26 +29,24 @@ export default function HabitItem(props: HabitItemProps) {
     return history[history.length - 1] === today();
   });
 
-  const icon = isHovering || isComplete ? faCheckSquare : faSquare;
+  const Icon =
+    isHovering || isComplete ? CheckBoxIcon : CheckBoxOutlineBlankIcon;
 
   const toggleHover = () => {
     setHovering(!isHovering);
   };
 
   return (
-    <ListGroupItem className="d-flex justify-content-between">
+    <ListItem>
       <div>
         <Button
-          className="mr-2"
           onClick={() => {
             dispatch(toggleComplete(id));
           }}
           onMouseEnter={toggleHover}
           onMouseLeave={toggleHover}
-          size="sm"
-          variant={isComplete ? "success" : "info"}
         >
-          <FontAwesomeIcon icon={icon} />
+          <Icon />
         </Button>
         <span>{value}</span>
       </div>
@@ -57,11 +54,9 @@ export default function HabitItem(props: HabitItemProps) {
         onClick={() => {
           history.push(`/details/${id}`);
         }}
-        size="sm"
-        variant="info"
       >
-        <FontAwesomeIcon icon={faEdit} />
+        <EditIcon />
       </Button>
-    </ListGroupItem>
+    </ListItem>
   );
 }

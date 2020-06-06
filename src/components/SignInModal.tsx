@@ -1,5 +1,5 @@
+import { Dialog, DialogContent, DialogTitle } from "@material-ui/core";
 import React from "react";
-import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { sendEmailLink } from "../slices/userSlice";
@@ -24,14 +24,12 @@ export default function SignInModal(props: SignInModalProps) {
   };
 
   return (
-    <Modal onHide={onHide} show={show}>
-      <Modal.Header closeButton>
-        <Modal.Title>Sign In Via Email Link</Modal.Title>
-      </Modal.Header>
+    <Dialog onClose={onHide} open={show}>
+      <DialogTitle>Sign In Via Email Link</DialogTitle>
       {emailLinkSent && (
-        <Modal.Body>
+        <DialogContent>
           <p>Please check your email for a link to complete sign in.</p>
-        </Modal.Body>
+        </DialogContent>
       )}
       {!emailLinkSent && (
         <EmailModalForm
@@ -40,6 +38,6 @@ export default function SignInModal(props: SignInModalProps) {
           submitLabel="Send Email"
         />
       )}
-    </Modal>
+    </Dialog>
   );
 }

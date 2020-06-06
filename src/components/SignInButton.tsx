@@ -1,5 +1,5 @@
+import { Button } from "@material-ui/core";
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
 
 import SignInModal from "./SignInModal";
 
@@ -16,9 +16,7 @@ export default function SignInButton() {
 
   return (
     <>
-      <Button onClick={handleClick} variant="success">
-        Sign In
-      </Button>
+      <Button onClick={handleClick}>Sign In</Button>
       <SignInModal onHide={handleHide} show={showModal} />
     </>
   );

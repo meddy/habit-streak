@@ -1,6 +1,6 @@
+import { AppBar, Button, Container, Typography } from "@material-ui/core";
 import firebase from "firebase/app";
 import React, { useEffect, useState } from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
 import { shallowEqual, useSelector } from "react-redux";
 import { Switch, Route, useHistory } from "react-router-dom";
 
@@ -67,16 +67,12 @@ export default function App() {
 
   return (
     <>
-      <Navbar bg="dark" className="mb-3" expand="lg" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">Habit Streak</Navbar.Brand>
-          <Nav className="mr-auto">
-            <Nav.Link href="#home">About</Nav.Link>
-          </Nav>
-          {authenticated && <AccountButton />}
-          {!authenticated && <SignInButton />}
-        </Container>
-      </Navbar>
+      <AppBar position="static">
+        <Typography variant="h6">Habit Streak</Typography>
+        <Typography variant="h6">About</Typography>
+        {authenticated && <AccountButton />}
+        {!authenticated && <SignInButton />}
+      </AppBar>
       <AppAlert message={errorMessage} onClose={handleDismissError} />
       <Switch>
         <Route exact path="/">

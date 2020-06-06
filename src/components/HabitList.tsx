@@ -1,6 +1,6 @@
+import { List } from "@material-ui/core";
 import React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { ListGroup } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 
 import { Habit, reorder } from "../slices/habitSlice";
@@ -35,7 +35,7 @@ export default function HabitList(props: HabitListProps) {
       <Droppable droppableId="droppable">
         {(provided) => (
           <div ref={provided.innerRef} {...provided.droppableProps}>
-            <ListGroup>
+            <List>
               {habits.map((habit, index) => (
                 <Draggable draggableId={habit.id} index={index} key={habit.id}>
                   {(provided) => (
@@ -49,7 +49,7 @@ export default function HabitList(props: HabitListProps) {
                   )}
                 </Draggable>
               ))}
-            </ListGroup>
+            </List>
             {provided.placeholder}
           </div>
         )}

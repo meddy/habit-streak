@@ -1,5 +1,5 @@
+import { Dialog, DialogContent, DialogTitle } from "@material-ui/core";
 import React from "react";
-import { Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 
 import { confirmEmail } from "../slices/userSlice";
@@ -19,11 +19,11 @@ export default function ConfirmEmailModal(props: ConfirmEmailModalProps) {
   };
 
   return (
-    <Modal onHide={() => {}} show={show}>
-      <Modal.Header>
-        <Modal.Title>Confirm Email</Modal.Title>
-      </Modal.Header>
-      <EmailModalForm onSubmit={handleSubmit} submitLabel="Confirm Email" />
-    </Modal>
+    <Dialog onClose={() => {}} open={show}>
+      <DialogTitle>Confirm Email</DialogTitle>
+      <DialogContent>
+        <EmailModalForm onSubmit={handleSubmit} submitLabel="Confirm Email" />
+      </DialogContent>
+    </Dialog>
   );
 }

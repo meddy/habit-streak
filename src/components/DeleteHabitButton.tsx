@@ -1,7 +1,12 @@
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 
 import { deleteHabit } from "../actions";
@@ -20,31 +25,28 @@ export default function DeleteHabitButton(props: DeleteHabitButtonProps) {
   return (
     <>
       <Button
-        className="deleteHabitButton__button"
         onClick={() => {
           setShowModal(true);
         }}
-        variant="danger"
       >
-        <FontAwesomeIcon icon={faTrash} />
+        <DeleteIcon />
         &nbsp;Delete Habit
       </Button>
-      <Modal
-        onHide={() => {
+      <Dialog
+        onClose={() => {
           setShowModal(false);
         }}
-        show={showModal}
+        open={showModal}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>Add History</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Are you sure you want to delete "{value}" ?</Modal.Body>
-        <Modal.Footer>
+        <DialogTitle>Add History</DialogTitle>
+        <DialogContent>
+          Are you sure you want to delete "{value}" ?
+        </DialogContent>
+        <DialogActions>
           <Button
             onClick={() => {
               setShowModal(false);
             }}
-            variant="secondary"
           >
             Cancel
           </Button>
@@ -53,12 +55,11 @@ export default function DeleteHabitButton(props: DeleteHabitButtonProps) {
               dispatch(deleteHabit(id));
               setShowModal(false);
             }}
-            variant="danger"
           >
             Delete
           </Button>
-        </Modal.Footer>
-      </Modal>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }

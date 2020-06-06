@@ -1,11 +1,12 @@
+import { Container } from "@material-ui/core";
 import React from "react";
-import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addHabit } from "../../slices/habitSlice";
-import { RootState } from "../../store";
-import HabitForm from "../HabitForm";
-import HabitList from "../HabitList";
+import { addHabit } from "../slices/habitSlice";
+import { RootState } from "../store";
+
+import HabitForm from "./HabitForm";
+import HabitList from "./HabitList";
 
 export default function HomePage() {
   const dispatch = useDispatch();

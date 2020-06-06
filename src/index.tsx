@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
 import "firebase/auth";
-import "./index.scss";
+import "fontsource-roboto";
 
 import App from "./components/App";
 import firebaseConfig from "./firebase.config.json";
