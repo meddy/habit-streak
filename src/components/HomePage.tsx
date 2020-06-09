@@ -16,7 +16,7 @@ export default function HomePage() {
   // move habit form under
   // implement email link login
   return (
-    <Container className="home__container">
+    <Container maxWidth="sm">
       <HabitForm
         existing={habits}
         onSubmit={(newHabit) => {

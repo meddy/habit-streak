@@ -1,10 +1,13 @@
-import { Button, ListItem } from "@material-ui/core";
 import {
-  CheckBox as CheckBoxIcon,
-  CheckBoxOutlineBlank as CheckBoxOutlineBlankIcon,
-  Edit as EditIcon,
-} from "@material-ui/icons";
-import React, { useState } from "react";
+  Checkbox,
+  IconButton,
+  ListItem,
+  ListItemIcon,
+  ListItemSecondaryAction,
+  ListItemText,
+} from "@material-ui/core";
+import { Edit as EditIcon } from "@material-ui/icons";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -22,41 +25,34 @@ export default function HabitItem(props: HabitItemProps) {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const [isHovering, setHovering] = useState(false);
 
   const isComplete = useSelector((state: RootState) => {
     const history = state.history[id] ?? [];
     return history[history.length - 1] === today();
   });
 
-  const Icon =
-    isHovering || isComplete ? CheckBoxIcon : CheckBoxOutlineBlankIcon;
-
-  const toggleHover = () => {
-    setHovering(!isHovering);
-  };
-
   return (
     <ListItem>
-      <div>
-        <Button
+      <ListItemIcon>
+        <Checkbox
+          checked={isComplete}
+          disableRipple
+          edge="start"
           onClick={() => {
             dispatch(toggleComplete(id));
           }}
-          onMouseEnter={toggleHover}
-          onMouseLeave={toggleHover}
+        />
+      </ListItemIcon>
+      <ListItemText>{value}</ListItemText>
+      <ListItemSecondaryAction>
+        <IconButton
+          onClick={() => {
+            history.push(`/details/${id}`);
+          }}
         >
-          <Icon />
-        </Button>
-        <span>{value}</span>
-      </div>
-      <Button
-        onClick={() => {
-          history.push(`/details/${id}`);
-        }}
-      >
-        <EditIcon />
-      </Button>
+          <EditIcon />
+        </IconButton>
+      </ListItemSecondaryAction>
     </ListItem>
   );
 }

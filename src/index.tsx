@@ -1,3 +1,4 @@
+import { createMuiTheme, CssBaseline, ThemeProvider } from "@material-ui/core";
 import firebase from "firebase/app";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -24,12 +25,21 @@ firebase.auth().onAuthStateChanged((user) => {
   }
 });
 
+const darkTheme = createMuiTheme({
+  palette: {
+    type: "dark",
+  },
+});
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-          <App />
+          <ThemeProvider theme={darkTheme}>
+            <CssBaseline />
+            <App />
+          </ThemeProvider>
         </BrowserRouter>
       </PersistGate>
     </Provider>
