@@ -39,11 +39,11 @@ export default function DetailsPage() {
       <HabitForm
         existing={habits}
         initialValue={value}
+        label="Rename"
         onSubmit={(newValue) => {
           dispatch(editLabel({ id, value: newValue }));
           return newValue;
         }}
-        submitLabel="Rename"
       />
       <DeleteHabitButton habit={habit} />
       <HistoryCalendar habit={habit} />

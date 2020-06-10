@@ -19,11 +19,11 @@ export default function HomePage() {
     <Container maxWidth="sm">
       <HabitForm
         existing={habits}
+        label="New Habit"
         onSubmit={(newHabit) => {
           dispatch(addHabit(newHabit));
           return "";
         }}
-        submitLabel="Add Habit"
       />
       <HabitList habits={habits} />
     </Container>
