@@ -1,3 +1,5 @@
+import { IconButton } from "@material-ui/core";
+import { Whatshot, WhatshotOutlined } from "@material-ui/icons";
 import { subDays } from "date-fns";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -8,10 +10,12 @@ import { formatDate, parseDate, today } from "../utils";
 
 interface StreakProps {
   habit: Habit;
+  onClick: () => void;
 }
 
 export default function Streak(props: StreakProps) {
-  const { habit } = props;
+  const { habit, onClick } = props;
+
   const streak = useSelector((state: RootState) => {
     const history = state.history[habit.id] ?? [];
     if (!history.length) {
@@ -38,13 +42,13 @@ export default function Streak(props: StreakProps) {
     return streak;
   });
 
-  const noun = streak === 1 ? "day" : "days";
+  const noun = streak === 1 || streak === 0 ? "day" : "days";
+  const Icon = streak > 0 ? Whatshot : WhatshotOutlined;
   return (
-    <h3>
-      Streak{" "}
-      <small className="text-muted">
-        {streak} {noun}
-      </small>
-    </h3>
+    <IconButton onClick={onClick} title={`${streak} ${noun} streak`}>
+      <Icon />
+      &nbsp;
+      {streak}
+    </IconButton>
   );
 }

@@ -5,7 +5,8 @@ import {
   DialogContent,
   DialogTitle,
 } from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { Delete as DeleteIcon } from "@material-ui/icons";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -16,18 +17,30 @@ interface DeleteHabitButtonProps {
   habit: Habit;
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      marginBottom: 0,
+    },
+  })
+);
+
 export default function DeleteHabitButton(props: DeleteHabitButtonProps) {
   const { id, value } = props.habit;
 
+  const classes = useStyles();
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
       <Button
+        className={classes.root}
+        color="secondary"
         onClick={() => {
           setShowModal(true);
         }}
+        variant="contained"
       >
         <DeleteIcon />
         &nbsp;Delete Habit

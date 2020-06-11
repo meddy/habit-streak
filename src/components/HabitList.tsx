@@ -45,8 +45,12 @@ export default function HabitList(props: HabitListProps) {
     >
       <Droppable droppableId="droppable">
         {(provided) => (
-          <div ref={provided.innerRef} {...provided.droppableProps}>
-            <List className={classes.root}>
+          <div
+            className={classes.root}
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
+            <List>
               {habits.map((habit, index) => (
                 <Draggable draggableId={habit.id} index={index} key={habit.id}>
                   {(provided) => (

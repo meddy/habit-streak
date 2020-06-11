@@ -1,12 +1,10 @@
 import {
   Checkbox,
-  IconButton,
   ListItem,
   ListItemIcon,
   ListItemSecondaryAction,
   ListItemText,
 } from "@material-ui/core";
-import { Edit as EditIcon } from "@material-ui/icons";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -16,12 +14,15 @@ import { toggleComplete } from "../slices/historySlice";
 import { RootState } from "../store";
 import { today } from "../utils";
 
+import Streak from "./Streak";
+
 interface HabitItemProps {
   habit: Habit;
 }
 
 export default function HabitItem(props: HabitItemProps) {
-  const { id, value } = props.habit;
+  const { habit } = props;
+  const { id, value } = habit;
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -31,6 +32,14 @@ export default function HabitItem(props: HabitItemProps) {
     return history[history.length - 1] === today();
   });
 
+  const handleComplete = () => {
+    dispatch(toggleComplete(id));
+  };
+
+  const goToDetails = () => {
+    history.push(`/details/${id}`);
+  };
+
   return (
     <ListItem>
       <ListItemIcon>
@@ -38,20 +47,12 @@ export default function HabitItem(props: HabitItemProps) {
           checked={isComplete}
           disableRipple
           edge="start"
-          onClick={() => {
-            dispatch(toggleComplete(id));
-          }}
+          onClick={handleComplete}
         />
       </ListItemIcon>
       <ListItemText>{value}</ListItemText>
       <ListItemSecondaryAction>
-        <IconButton
-          onClick={() => {
-            history.push(`/details/${id}`);
-          }}
-        >
-          <EditIcon />
-        </IconButton>
+        <Streak habit={habit} onClick={goToDetails} />
       </ListItemSecondaryAction>
     </ListItem>
   );

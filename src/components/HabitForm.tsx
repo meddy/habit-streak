@@ -1,11 +1,13 @@
 import { IconButton, InputAdornment, TextField } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { AddCircle as AddCircleIcon } from "@material-ui/icons";
+import clsx from "clsx";
 import React, { useState } from "react";
 
 import { Habit } from "../slices/habitSlice";
 
 interface HabitFormProps {
+  className?: string;
   initialValue?: string;
   existing: Habit[];
   label: string;
@@ -21,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function HabitForm(props: HabitFormProps) {
-  const { initialValue = "", existing, label, onSubmit } = props;
+  const { className, initialValue = "", existing, label, onSubmit } = props;
 
   const classes = useStyles();
   const [value, setValue] = useState(initialValue);
@@ -59,7 +61,11 @@ export default function HabitForm(props: HabitFormProps) {
   };
 
   return (
-    <form className={classes.root} noValidate onSubmit={handleSubmit}>
+    <form
+      className={clsx(className, classes.root)}
+      noValidate
+      onSubmit={handleSubmit}
+    >
       <TextField
         error={submitted && !isValid}
         fullWidth
