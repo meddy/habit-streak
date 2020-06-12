@@ -1,10 +1,13 @@
 import { IconButton, InputAdornment, TextField } from "@material-ui/core";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { styled } from "@material-ui/core/styles";
 import { AddCircle as AddCircleIcon } from "@material-ui/icons";
-import clsx from "clsx";
 import React, { useState } from "react";
 
 import { Habit } from "../slices/habitSlice";
+
+const StyledForm = styled("form")(({ theme }) => ({
+  marginBottom: theme.spacing(2),
+}));
 
 interface HabitFormProps {
   className?: string;
@@ -14,18 +17,9 @@ interface HabitFormProps {
   onSubmit: (label: string) => string;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      marginBottom: theme.spacing(2),
-    },
-  })
-);
-
 export default function HabitForm(props: HabitFormProps) {
   const { className, initialValue = "", existing, label, onSubmit } = props;
 
-  const classes = useStyles();
   const [value, setValue] = useState(initialValue);
   const [submitted, setSubmitted] = useState(false);
 
@@ -61,11 +55,7 @@ export default function HabitForm(props: HabitFormProps) {
   };
 
   return (
-    <form
-      className={clsx(className, classes.root)}
-      noValidate
-      onSubmit={handleSubmit}
-    >
+    <StyledForm className={className} noValidate onSubmit={handleSubmit}>
       <TextField
         error={submitted && !isValid}
         fullWidth
@@ -85,6 +75,6 @@ export default function HabitForm(props: HabitFormProps) {
         value={value}
         variant="outlined"
       />
-    </form>
+    </StyledForm>
   );
 }

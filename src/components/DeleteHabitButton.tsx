@@ -5,7 +5,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@material-ui/core";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { styled } from "@material-ui/core/styles";
 import { Delete as DeleteIcon } from "@material-ui/icons";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -13,29 +13,23 @@ import { useDispatch } from "react-redux";
 import { deleteHabit } from "../actions";
 import { Habit } from "../slices/habitSlice";
 
+const StyledButton = styled(Button)({
+  marginBottom: 0,
+});
+
 interface DeleteHabitButtonProps {
   habit: Habit;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      marginBottom: 0,
-    },
-  })
-);
-
 export default function DeleteHabitButton(props: DeleteHabitButtonProps) {
   const { id, value } = props.habit;
 
-  const classes = useStyles();
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <Button
-        className={classes.root}
+      <StyledButton
         color="secondary"
         onClick={() => {
           setShowModal(true);
@@ -44,7 +38,7 @@ export default function DeleteHabitButton(props: DeleteHabitButtonProps) {
       >
         <DeleteIcon />
         &nbsp;Delete Habit
-      </Button>
+      </StyledButton>
       <Dialog
         onClose={() => {
           setShowModal(false);

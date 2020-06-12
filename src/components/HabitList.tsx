@@ -1,5 +1,5 @@
 import { List } from "@material-ui/core";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { styled } from "@material-ui/core/styles";
 import React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
@@ -8,21 +8,16 @@ import { Habit, reorder } from "../slices/habitSlice";
 
 import HabitItem from "./HabitItem";
 
+const ListWrapper = styled("div")(({ theme }) => ({
+  width: "100%",
+  backgroundColor: theme.palette.background.paper,
+}));
+
 interface HabitListProps {
   habits: Habit[];
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: "100%",
-      backgroundColor: theme.palette.background.paper,
-    },
-  })
-);
-
 export default function HabitList(props: HabitListProps) {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const { habits } = props;
 
@@ -45,11 +40,7 @@ export default function HabitList(props: HabitListProps) {
     >
       <Droppable droppableId="droppable">
         {(provided) => (
-          <div
-            className={classes.root}
-            ref={provided.innerRef}
-            {...provided.droppableProps}
-          >
+          <ListWrapper ref={provided.innerRef} {...provided.droppableProps}>
             <List>
               {habits.map((habit, index) => (
                 <Draggable draggableId={habit.id} index={index} key={habit.id}>
@@ -66,7 +57,7 @@ export default function HabitList(props: HabitListProps) {
               ))}
             </List>
             {provided.placeholder}
-          </div>
+          </ListWrapper>
         )}
       </Droppable>
     </DragDropContext>
