@@ -1,17 +1,12 @@
 import { List } from "@material-ui/core";
-import { styled } from "@material-ui/core/styles";
 import React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 
-import { Habit, reorder } from "../slices/habitSlice";
+import { Habit, reorder } from "../../slices/habitSlice";
+import HabitItem from "../HabitItem";
 
-import HabitItem from "./HabitItem";
-
-const ListWrapper = styled("div")(({ theme }) => ({
-  width: "100%",
-  backgroundColor: theme.palette.background.paper,
-}));
+import { ListWrapper } from "./HabitList.styles";
 
 interface HabitListProps {
   habits: Habit[];

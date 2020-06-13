@@ -5,17 +5,14 @@ import {
   DialogContent,
   DialogTitle,
 } from "@material-ui/core";
-import { styled } from "@material-ui/core/styles";
 import { Delete as DeleteIcon } from "@material-ui/icons";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { deleteHabit } from "../actions";
-import { Habit } from "../slices/habitSlice";
+import { deleteHabit } from "../../actions";
+import { Habit } from "../../slices/habitSlice";
 
-const StyledButton = styled(Button)({
-  marginBottom: 0,
-});
+import { StyledButton } from "./DeleteHabitButton.styles";
 
 interface DeleteHabitButtonProps {
   habit: Habit;

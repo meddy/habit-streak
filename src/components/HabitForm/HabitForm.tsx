@@ -1,13 +1,10 @@
 import { IconButton, InputAdornment, TextField } from "@material-ui/core";
-import { styled } from "@material-ui/core/styles";
 import { AddCircle as AddCircleIcon } from "@material-ui/icons";
 import React, { useState } from "react";
 
-import { Habit } from "../slices/habitSlice";
+import { Habit } from "../../slices/habitSlice";
 
-const StyledForm = styled("form")(({ theme }) => ({
-  marginBottom: theme.spacing(2),
-}));
+import { StyledForm } from "./HabitForm.styles";
 
 interface HabitFormProps {
   className?: string;

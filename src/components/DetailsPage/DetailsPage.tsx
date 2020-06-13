@@ -1,36 +1,18 @@
-import {
-  Breadcrumbs,
-  Container,
-  Link,
-  Paper,
-  Typography,
-} from "@material-ui/core";
-import { styled } from "@material-ui/core/styles";
+import { Container, Link, Typography } from "@material-ui/core";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect, Link as RouterLink } from "react-router-dom";
 
-import { editLabel } from "../slices/habitSlice";
-import { RootState } from "../store";
+import { editLabel } from "../../slices/habitSlice";
+import { RootState } from "../../store";
+import DeleteHabitButton from "../DeleteHabitButton";
+import HistoryCalendar from "../HistoryCalendar";
 
-import DeleteHabitButton from "./DeleteHabitButton";
-import HabitForm from "./HabitForm";
-import HistoryCalendar from "./HistoryCalendar";
-
-const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
-}));
-
-const ActionsContainer = styled(Paper)(({ theme }) => ({
-  display: "flex",
-  padding: theme.spacing(1),
-  marginBottom: theme.spacing(2),
-}));
-
-const StyledHabitForm = styled(HabitForm)(({ theme }) => ({
-  flexGrow: 1,
-  marginRight: theme.spacing(2),
-}));
+import {
+  StyledBreadcrumbs,
+  ActionsContainer,
+  StyledHabitForm,
+} from "./DetailsPage.styles";
 
 interface RouteParams {
   id: string;
