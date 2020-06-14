@@ -9,11 +9,15 @@ export const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
 
 export const ActionsContainer = styled(Paper)(({ theme }) => ({
   display: "flex",
-  padding: theme.spacing(1),
+  flexWrap: "wrap",
   marginBottom: theme.spacing(2),
+  padding: theme.spacing(1),
 }));
 
 export const StyledHabitForm = styled(HabitForm)(({ theme }) => ({
   flexGrow: 1,
   marginRight: theme.spacing(2),
+  [theme.breakpoints.down("sm")]: {
+    marginRight: 0,
+  },
 }));

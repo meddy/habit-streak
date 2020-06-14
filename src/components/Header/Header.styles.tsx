@@ -11,6 +11,7 @@ export const StyledAppBar = styled((props: AppBarProps) => (
   <AppBar position="static" {...props} />
 ))(({ theme }) => ({
   marginRight: theme.spacing(2),
+  marginBottom: theme.spacing(2),
 }));
 
 export const AppName = styled((props: TypographyProps) => (
