@@ -47,10 +47,6 @@ export default function HabitForm(props: HabitFormProps) {
     }
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.currentTarget.value);
-  };
-
   return (
     <StyledForm className={className} noValidate onSubmit={handleSubmit}>
       <TextField
@@ -67,7 +63,9 @@ export default function HabitForm(props: HabitFormProps) {
           ),
         }}
         label={label}
-        onChange={handleChange}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setValue(event.currentTarget.value);
+        }}
         placeholder="I want to..."
         value={value}
         variant="outlined"

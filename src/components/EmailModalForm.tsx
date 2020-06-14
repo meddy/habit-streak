@@ -12,6 +12,7 @@ interface EmailModalForm {
   submitLabel: string;
 }
 
+// @todo: clean this up
 export default function EmailModalForm(props: EmailModalForm) {
   const { disabled = false, onSubmit, submitLabel } = props;
   const [email, setEmail] = useState("");
@@ -32,17 +33,15 @@ export default function EmailModalForm(props: EmailModalForm) {
     }
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  };
-
   return (
     <form noValidate onSubmit={handleSubmit}>
       <DialogContent>
         <TextField
           disabled={disabled}
           label="Email address"
-          onChange={handleChange}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setEmail(event.target.value);
+          }}
           required
           type="email"
           value={email}

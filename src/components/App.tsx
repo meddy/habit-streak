@@ -56,14 +56,15 @@ export default function App() {
     };
   }, [email, history]);
 
-  const handleDismissError = () => {
-    setErrorMessage("");
-  };
-
   return (
     <>
       <Header />
-      <AppAlert message={errorMessage} onClose={handleDismissError} />
+      <AppAlert
+        message={errorMessage}
+        onClose={() => {
+          setErrorMessage("");
+        }}
+      />
       <Switch>
         <Route exact path="/">
           <HomePage />

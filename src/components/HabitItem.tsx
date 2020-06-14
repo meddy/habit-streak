@@ -32,14 +32,6 @@ export default function HabitItem(props: HabitItemProps) {
     return history[history.length - 1] === today();
   });
 
-  const handleComplete = () => {
-    dispatch(toggleComplete(id));
-  };
-
-  const goToDetails = () => {
-    history.push(`/details/${id}`);
-  };
-
   return (
     <ListItem>
       <ListItemIcon>
@@ -47,12 +39,19 @@ export default function HabitItem(props: HabitItemProps) {
           checked={isComplete}
           disableRipple
           edge="start"
-          onClick={handleComplete}
+          onClick={() => {
+            dispatch(toggleComplete(id));
+          }}
         />
       </ListItemIcon>
       <ListItemText>{value}</ListItemText>
       <ListItemSecondaryAction>
-        <Streak habit={habit} onClick={goToDetails} />
+        <Streak
+          habit={habit}
+          onClick={() => {
+            history.push(`/details/${id}`);
+          }}
+        />
       </ListItemSecondaryAction>
     </ListItem>
   );

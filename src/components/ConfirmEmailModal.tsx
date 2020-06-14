@@ -14,15 +14,16 @@ export default function ConfirmEmailModal(props: ConfirmEmailModalProps) {
   const dispatch = useDispatch();
   const { show } = props;
 
-  const handleSubmit = (email: string) => {
-    dispatch(confirmEmail(email));
-  };
-
   return (
     <Dialog onClose={() => {}} open={show}>
       <DialogTitle>Confirm Email</DialogTitle>
       <DialogContent>
-        <EmailModalForm onSubmit={handleSubmit} submitLabel="Confirm Email" />
+        <EmailModalForm
+          onSubmit={(email: string) => {
+            dispatch(confirmEmail(email));
+          }}
+          submitLabel="Confirm Email"
+        />
       </DialogContent>
     </Dialog>
   );

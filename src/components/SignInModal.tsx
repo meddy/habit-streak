@@ -19,10 +19,6 @@ export default function SignInModal(props: SignInModalProps) {
   const { loading, email } = useSelector((state: RootState) => state.user);
   const emailLinkSent = email && loading !== null;
 
-  const handleSubmit = (email: string) => {
-    dispatch(sendEmailLink({ email, url: window.location.href }));
-  };
-
   return (
     <Dialog onClose={onHide} open={show}>
       <DialogTitle>Sign In Via Email Link</DialogTitle>
@@ -34,7 +30,9 @@ export default function SignInModal(props: SignInModalProps) {
       {!emailLinkSent && (
         <EmailModalForm
           disabled={!!loading}
-          onSubmit={handleSubmit}
+          onSubmit={(email: string) => {
+            dispatch(sendEmailLink({ email, url: window.location.href }));
+          }}
           submitLabel="Send Email"
         />
       )}
