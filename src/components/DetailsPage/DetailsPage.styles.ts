@@ -17,7 +17,9 @@ export const ActionsContainer = styled(Paper)(({ theme }) => ({
 export const StyledHabitForm = styled(HabitForm)(({ theme }) => ({
   flexGrow: 1,
   marginRight: theme.spacing(2),
+  marginBottom: 0,
   [theme.breakpoints.down("sm")]: {
     marginRight: 0,
+    marginBottom: theme.spacing(2),
   },
 }));

@@ -59,7 +59,6 @@ export default function HistoryCalendar(props: HistoryCalendarProps) {
       />
       <ConfirmModal
         body={`Are you sure you did "${value}" on ${addHistoryDate}?`}
-        button="Save Changes"
         onClose={() => {
           setAddHistoryDate("");
         }}
@@ -70,8 +69,8 @@ export default function HistoryCalendar(props: HistoryCalendarProps) {
         title="Add History"
       />
       <ConfirmModal
-        body={removeHistoryDate}
-        button="Remove"
+        body={`"${value}" on ${removeHistoryDate}`}
+        color="secondary"
         onClose={() => {
           setRemoveHistoryDate("");
         }}
@@ -79,7 +78,7 @@ export default function HistoryCalendar(props: HistoryCalendarProps) {
           dispatch(removeHistory({ id, date: removeHistoryDate }));
         }}
         show={!!removeHistoryDate.length}
-        title="Remove History"
+        title="Delete History"
       />
     </>
   );

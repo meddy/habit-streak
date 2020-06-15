@@ -55,10 +55,12 @@ export default function DeleteHabitButton(props: DeleteHabitButtonProps) {
             Cancel
           </Button>
           <Button
+            color="secondary"
             onClick={() => {
               dispatch(deleteHabit(id));
               setShowModal(false);
             }}
+            variant="contained"
           >
             Delete
           </Button>

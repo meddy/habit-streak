@@ -2,14 +2,16 @@ import {
   Button,
   Dialog,
   DialogActions,
-  DialogContent,
   DialogTitle,
+  PropTypes,
 } from "@material-ui/core";
 import React from "react";
 
+import { StyledDialogContent } from "./ConfirmModal.styles";
+
 interface ConfirmModalProps {
   body: string;
-  button: string;
+  color?: PropTypes.Color;
   onClose: () => void;
   onConfirm: () => void;
   show: boolean;
@@ -17,21 +19,23 @@ interface ConfirmModalProps {
 }
 
 export default function ConfirmModal(props: ConfirmModalProps) {
-  const { body, button, onClose, onConfirm, show, title } = props;
+  const { body, color = "primary", onClose, onConfirm, show, title } = props;
 
   return (
     <Dialog onClose={onClose} open={show}>
       <DialogTitle>{title}</DialogTitle>
-      <DialogContent>{body}</DialogContent>
+      <StyledDialogContent>{body}</StyledDialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
         <Button
+          color={color}
           onClick={() => {
             onConfirm();
             onClose();
           }}
+          variant="contained"
         >
-          {button}
+          Confirm
         </Button>
       </DialogActions>
     </Dialog>
