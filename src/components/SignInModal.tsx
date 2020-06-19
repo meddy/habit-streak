@@ -1,11 +1,12 @@
-import { Dialog, DialogContent, DialogTitle } from "@material-ui/core";
+import { Dialog, DialogTitle } from "@material-ui/core";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { sendEmailLink } from "../slices/userSlice";
 import { RootState } from "../store";
 
-import EmailModalForm from "./EmailModalForm";
+import { StyledDialogContent } from "./ConfirmModal/ConfirmModal.styles";
+import EmailForm from "./EmailForm";
 
 interface SignInModalProps {
   show: boolean;
@@ -22,20 +23,20 @@ export default function SignInModal(props: SignInModalProps) {
   return (
     <Dialog onClose={onHide} open={show}>
       <DialogTitle>Sign In Via Email Link</DialogTitle>
-      {emailLinkSent && (
-        <DialogContent>
+      <StyledDialogContent>
+        {emailLinkSent && (
           <p>Please check your email for a link to complete sign in.</p>
-        </DialogContent>
-      )}
-      {!emailLinkSent && (
-        <EmailModalForm
-          disabled={!!loading}
-          onSubmit={(email: string) => {
-            dispatch(sendEmailLink({ email, url: window.location.href }));
-          }}
-          submitLabel="Send Email"
-        />
-      )}
+        )}
+        {!emailLinkSent && (
+          <EmailForm
+            disabled={!!loading}
+            label="Email Address"
+            onSubmit={(email: string) => {
+              dispatch(sendEmailLink({ email, url: window.location.href }));
+            }}
+          />
+        )}
+      </StyledDialogContent>
     </Dialog>
   );
 }

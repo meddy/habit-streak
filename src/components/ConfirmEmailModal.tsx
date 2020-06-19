@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { confirmEmail } from "../slices/userSlice";
 
-import EmailModalForm from "./EmailModalForm";
+import EmailForm from "./EmailForm";
 
 interface ConfirmEmailModalProps {
   show: boolean;
@@ -18,11 +18,11 @@ export default function ConfirmEmailModal(props: ConfirmEmailModalProps) {
     <Dialog onClose={() => {}} open={show}>
       <DialogTitle>Confirm Email</DialogTitle>
       <DialogContent>
-        <EmailModalForm
+        <EmailForm
+          label="Confirm Email"
           onSubmit={(email: string) => {
             dispatch(confirmEmail(email));
           }}
-          submitLabel="Confirm Email"
         />
       </DialogContent>
     </Dialog>
