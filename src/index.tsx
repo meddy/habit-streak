@@ -19,6 +19,8 @@ firebase.initializeApp(firebaseConfig);
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
+    console.log(user.displayName);
+    console.log(user.email);
     store.dispatch(receiveSignedIn());
   } else {
     store.dispatch(receiveSignedOut());
