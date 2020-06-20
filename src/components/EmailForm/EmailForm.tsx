@@ -1,4 +1,4 @@
-import { IconButton, InputAdornment, TextField } from "@material-ui/core";
+import { IconButton, InputAdornment } from "@material-ui/core";
 import { Send as SendIcon } from "@material-ui/icons";
 import React, { useState } from "react";
 
@@ -10,31 +10,32 @@ interface EmailForm {
   onSubmit: (email: string) => void;
 }
 
-// @todo: clean this up
 export default function EmailModal(props: EmailForm) {
   const { label, disabled = false, onSubmit } = props;
   const [email, setEmail] = useState("");
-  const [validated, setValidated] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  const pattern =
-    '^(([^<>()[]\\.,;:s@"]+(.[^<>()[]\\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$';
-
-  const errorMsg = "Please enter a valid email.";
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setValidated(true);
-
-    if (event.currentTarget.checkValidity()) {
-      onSubmit(email);
-    }
-  };
+  const validEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const errorMsg =
+    !validEmail.test(email) && submitted ? "Please enter a valid email." : "";
 
   return (
-    <StyledForm noValidate onSubmit={handleSubmit}>
+    <StyledForm
+      noValidate
+      onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setSubmitted(true);
+
+        if (event.currentTarget.checkValidity()) {
+          onSubmit(email);
+        }
+      }}
+    >
       <StyledTextField
         disabled={disabled}
+        error={!!errorMsg.length}
+        helperText={errorMsg}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
