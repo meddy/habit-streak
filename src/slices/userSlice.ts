@@ -3,6 +3,7 @@ import {
   createSlice,
   SerializedError,
 } from "@reduxjs/toolkit";
+import { PayloadAction } from "@reduxjs/toolkit";
 import firebase from "firebase/app";
 
 interface UserSliceState {
@@ -10,11 +11,16 @@ interface UserSliceState {
   email: string | null;
   error?: SerializedError | null;
   loading: boolean | null;
+  signInEmail: string | null;
 }
 
 interface SendEmailLinkPayload {
   email: string;
   url: string;
+}
+
+interface ReceiveSignedInPayload {
+  email: string | null;
 }
 
 export const sendEmailLink = createAsyncThunk(
@@ -33,6 +39,7 @@ const initialState: UserSliceState = {
   email: null,
   error: null,
   loading: null,
+  signInEmail: null,
 };
 
 const userSlice = createSlice({
@@ -46,12 +53,13 @@ const userSlice = createSlice({
       return state;
       // show message
     },
-    receiveSignedIn(state) {
+    receiveSignedIn(state, action: PayloadAction<ReceiveSignedInPayload>) {
       state.authenticated = true;
+      state.email = action.payload.email;
+      state.signInEmail = null;
     },
-    receiveSignedOut(state) {
-      state.authenticated = false;
-      state.email = null;
+    receiveSignedOut() {
+      return initialState;
     },
   },
   extraReducers: {
@@ -60,7 +68,7 @@ const userSlice = createSlice({
     },
     [sendEmailLink.fulfilled.type]: (state, action) => {
       state.loading = false;
-      state.email = action.payload;
+      state.signInEmail = action.payload;
     },
     [sendEmailLink.rejected.type]: (state, action) => {
       state.loading = false;

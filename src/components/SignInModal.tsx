@@ -17,15 +17,19 @@ export default function SignInModal(props: SignInModalProps) {
   const { show, onHide } = props;
 
   const dispatch = useDispatch();
-  const { loading, email } = useSelector((state: RootState) => state.user);
-  const emailLinkSent = email && loading !== null;
+  const { loading, signInEmail } = useSelector(
+    (state: RootState) => state.user
+  );
+  const emailLinkSent = signInEmail && loading !== null;
 
   return (
     <Dialog onClose={onHide} open={show}>
       <DialogTitle>Sign In Via Email Link</DialogTitle>
       <StyledDialogContent>
         {emailLinkSent && (
-          <p>Please check your email for a link to complete sign in.</p>
+          <p>
+            Please check your email for a link to complete the sign in process.
+          </p>
         )}
         {!emailLinkSent && (
           <EmailForm
