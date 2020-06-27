@@ -2,7 +2,7 @@ import { Dialog, DialogContent, DialogTitle } from "@material-ui/core";
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import { confirmEmail } from "../slices/userSlice";
+import { confirmEmail } from "../slices/signInSlice";
 
 import EmailForm from "./EmailForm";
 

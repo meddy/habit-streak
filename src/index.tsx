@@ -19,7 +19,7 @@ firebase.initializeApp(firebaseConfig);
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    store.dispatch(receiveSignedIn({ email: user.email }));
+    store.dispatch(receiveSignedIn(user.email));
   } else {
     // This can't sign out if we are trying to sign in from email
     store.dispatch(receiveSignedOut());

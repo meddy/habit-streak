@@ -13,7 +13,10 @@ import HomePage from "./HomePage";
 
 export default function App() {
   const history = useHistory();
-  const { email } = useSelector((state: RootState) => state.user, shallowEqual);
+  const email = useSelector(
+    (state: RootState) => state.signIn.email,
+    shallowEqual
+  );
   const [errorMessage, setErrorMessage] = useState("");
   const [showConfirmEmailModal, setShowConfirmEmail] = useState(false);
 

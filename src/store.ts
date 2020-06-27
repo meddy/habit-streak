@@ -8,6 +8,7 @@ import storage from "redux-persist/lib/storage";
 
 import habitSlice from "./slices/habitSlice";
 import historySlice from "./slices/historySlice";
+import signInSlice from "./slices/signInSlice";
 import userSlice from "./slices/userSlice";
 
 const persistConfig = {
@@ -16,16 +17,17 @@ const persistConfig = {
   blacklist: ["user"],
 };
 
-const userPersistConfig = {
+const signInPersistConfig = {
   key: "user",
   storage,
-  whitelist: ["signInEmail"],
+  whitelist: ["email"],
 };
 
 const rootReducer = combineReducers({
   habits: habitSlice.reducer,
   history: historySlice.reducer,
-  user: persistReducer(userPersistConfig, userSlice.reducer),
+  signIn: persistReducer(signInPersistConfig, signInSlice.reducer),
+  user: userSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -2,7 +2,7 @@ import { Dialog, DialogTitle } from "@material-ui/core";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { sendEmailLink } from "../slices/userSlice";
+import { sendEmailLink } from "../slices/signInSlice";
 import { RootState } from "../store";
 
 import { StyledDialogContent } from "./ConfirmModal/ConfirmModal.styles";
@@ -17,10 +17,8 @@ export default function SignInModal(props: SignInModalProps) {
   const { show, onHide } = props;
 
   const dispatch = useDispatch();
-  const { loading, signInEmail } = useSelector(
-    (state: RootState) => state.user
-  );
-  const emailLinkSent = signInEmail && loading !== null;
+  const { loading, email } = useSelector((state: RootState) => state.signIn);
+  const emailLinkSent = email && loading !== null;
 
   return (
     <Dialog onClose={onHide} open={show}>

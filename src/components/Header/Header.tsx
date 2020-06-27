@@ -9,9 +9,7 @@ import SignInButton from "../SignInButton";
 import { StyledAppBar, AppName, NavItem } from "./Header.styles";
 
 export default function Header() {
-  const authenticated = useSelector(
-    (state: RootState) => state.user.authenticated
-  );
+  const authenticated = useSelector((state: RootState) => !!state.user.email);
 
   return (
     <StyledAppBar>
